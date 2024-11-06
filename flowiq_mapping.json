@@ -103,9 +103,16 @@
         "vcftools/0.1.16": "quay.io/biocontainers/vcftools:0.1.16--pl5321hdcf5f25_11"
     },
     "cellranger": {
+        "cellranger/8.0.1": "cumulusprod/cellranger:8.0.1",
+        "cellranger/8.0.0": "cumulusprod/cellranger:8.0.0",
         "cellranger/7.2.0": "nfcore/cellranger:7.2.0",
         "cellranger/7.1.0": "nfcore/cellranger:7.1.0",
+        "cellranger/7.0.1": "cumulusprod/cellranger:7.0.1",
         "cellranger/7.0.0": "nfcore/cellranger:7.0.0",
-        "cellranger/6.1.2": "nfcore/cellranger:6.1.2"
+        "cellranger/6.1.2": "nfcore/cellranger:6.1.2",
+        "cellranger/6.1.1": "cumulusprod/cellranger:6.1.1",
+        "cellranger/6.0.0": "cumulusprod/cellranger:6.0.0",
+        "cellranger/5.0.1": "cumulusprod/cellranger:5.0.1",
+        "cellranger/5.0.0": "cumulusprod/cellranger:5.0.0"
     }
 }
