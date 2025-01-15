@@ -17,6 +17,9 @@
         .mainbody {
             padding: 50px 15px;
         }
+          .section-heading {
+            margin-top: 40px;
+        }
 
         .subtitle {
             font-weight: 200;
@@ -122,15 +125,13 @@
             }
         }
     </style>
-
 </head>
 
-<body>
 
+<body>
     <div class="container mainbody">
 
-        <img title="Flow-IQ" src="images/Flow-IQ.png"
-            class="hidden-lg-down float-lg-right">
+        <img title="Flow-IQ" src="images/Flow-IQ.png" class="hidden-lg-down float-lg-right">
         <h1 class="display-1">Flow-IQ</h1>
         <h2 class="subtitle text-muted mb-5">A workflow cloud migration toolkit</h2>
 
@@ -146,7 +147,6 @@
 
         <h2><a name="docker-image-builder">Biowulf Module to Docker Image Builder</a></h2>
         <p>Use the dropdown boxes below to locate the equivalent docker image for each Biowulf module.</p>
-
         <form>
             <div class="row">
                 <div class="form-group col-sm-3">
@@ -164,16 +164,47 @@
             </div>
         </form>
 
-
-
         <h5>Docker Image</h5>
-
         <div class="prewrap" id="docker_ref_wrapper">
             <button class="btn" data-clipboard-target="#docker_ref" disabled>Copy</button>
             <pre><code id="docker_ref"><span class="text-muted">waiting for selection&hellip;</span></code></pre>
         </div>
-    </div>
 
+
+
+<!-- After this line is the Data Type to Test Data Location Mapper -->
+        <br>
+
+
+        <h2 class="section-heading"><a name="example-data-builder">Example Data Builder</a></h2>
+        <p>Use the dropdown boxes below to locate example datasets for corresponding data types.</p>
+
+        <form>
+            <div class="row">
+                <div class="form-group col-sm-3">
+                    <label for="all_data_types">Data Type</label>
+                    <select class="form-control" id="all_data_types">
+                        <option value="">[ select ] </option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="data_options">Additional Options</label>
+                    <select class="form-control" id="data_options" disabled>
+                        <option value="">Please select any additional options </option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <h5>S3 Locations</h5>
+        <div class="prewrap" id="data_ref_wrapper">
+            <button class="btn" data-clipboard-target="#data_ref" disabled>Copy</button>
+            <pre><code id="data_ref"><span class="text-muted">waiting for selection&hellip;</span></code></pre>
+        </div>
+
+        <h5>Description</h5>
+            <pre><code id="description"><span class="text-muted">waiting for selection&hellip;</span></code></pre>
+    </div>
 
 
     <div class="footer">
@@ -205,11 +236,12 @@
     <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
     <script type="text/javascript">
 
+        // Docker Image Section
         $(function () {
             // Initiate clipboard.js
             new Clipboard('.prewrap > .btn');
 
-            // Step 1: Load the JSON file and populate the first dropdown
+            // Step 1: Load the JSON mapping files and populate the first dropdown
             $.getJSON('flowiq_mapping.json', function (data) {
                 const $biowulfDropdown = $('#all_modules');
                 const $versionDropdown = $('#version');
@@ -264,6 +296,86 @@
                 console.error('Error loading or parsing JSON');
             });
         });
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+        // Example Data Section
+        $(function () {
+            // Initiate clipboard.js
+            new Clipboard('.prewrap > .btn');
+
+            // Step 1: Load the JSON mapping files and populate the first dropdown
+            $.getJSON('test_data_mapping.json', function (data) {
+                const $dataTypeDropdown = $('#all_data_types');
+                const $dataOptionDropdown = $('#data_options');
+                const $s3Location = $('#data_ref');
+                const $copyButton = $('#data_ref_wrapper .btn');
+                const $dataDescription = $('#description');
+
+                Object.keys(data).forEach(key => {
+                    $dataTypeDropdown.append($('<option>', {
+                        value: key,
+                        text: key
+                    }));
+                });
+
+                // Populate the second dropdown when the first dropdown changes
+                $dataTypeDropdown.change(function () {
+                    const selectedData = $(this).val();
+
+                    // Reset the second dropdown and data options reference
+                    $dataOptionDropdown.empty().append('<option value="">Please select a version</option>').prop('disabled', true);
+                    $s3Location.html('<span class="text-muted">waiting for selection&hellip;</span>');
+                    $copyButton.prop('disabled', true);
+
+                    if (selectedData && data[selectedData]) {
+                        // Populate the second dropdown
+                        Object.keys(data[selectedData]).forEach(key => {
+                            $dataOptionDropdown.append($('<option>', {
+                                value: key,
+                                text: key
+                            }));
+                        });
+
+                        $dataOptionDropdown.prop('disabled', false); // Enable the second dropdown
+                    }
+                });
+
+                // Update the example data reference when the second dropdown changes
+                $dataOptionDropdown.change(function () {
+                    const selectedData = $dataTypeDropdown.val();
+                    const selectedOption = $(this).val();
+
+                    if (selectedData && selectedOption && data[selectedData][selectedOption]) {
+                        // Set the docker image reference and enable the copy button
+                        $s3Location.text(data[selectedData][selectedOption]);
+                        $dataDescription.text(data[selectedData]["Description"]);
+                        $copyButton.prop('disabled', false);
+                    } else {
+                        // Reset the docker image reference and disable the copy button
+                        $s3Location.html('<span class="text-muted">waiting for selection&hellip;</span>');
+                        $copyButton.prop('disabled', true);
+                    }
+                });
+            }).fail(function () {
+                console.error('Error loading or parsing JSON');
+            });
+        });
+
+
     </script>
 </body>
 </html>
