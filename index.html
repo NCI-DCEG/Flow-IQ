@@ -17,7 +17,7 @@
         .mainbody {
             padding: 50px 15px;
         }
-          .section-heading {
+        .section-heading {
             margin-top: 40px;
         }
 
@@ -30,7 +30,11 @@
             border-radius: 5px;
             padding: 20px;
         }
-
+        .desc {
+            /* Set a max-width for the pre element to wrap text */
+            white-space: pre-wrap; /* Allow wrapping */
+            word-wrap: break-word; /* Break long words if necessary */
+        }
         code {
             color: inherit;
         }
@@ -196,14 +200,14 @@
             </div>
         </form>
 
-        <h5>S3 Locations</h5>
+        <h5>Data Locations</h5>
         <div class="prewrap" id="data_ref_wrapper">
-            <button class="btn" data-clipboard-target="#data_ref" disabled>Copy</button>
+            <!-- <button class="btn" data-clipboard-target="#data_ref" disabled>Copy</button> -->
             <pre><code id="data_ref"><span class="text-muted">waiting for selection&hellip;</span></code></pre>
         </div>
 
         <h5>Description</h5>
-            <pre><code id="description"><span class="text-muted">waiting for selection&hellip;</span></code></pre>
+            <pre><code id="description" class="desc"><span class="text-muted">waiting for selection&hellip;</span></code></pre>
     </div>
 
 
@@ -322,7 +326,7 @@
                 const $dataTypeDropdown = $('#all_data_types');
                 const $dataOptionDropdown = $('#data_options');
                 const $s3Location = $('#data_ref');
-                const $copyButton = $('#data_ref_wrapper .btn');
+                // const $copyButton = $('#data_ref_wrapper .btn');
                 const $dataDescription = $('#description');
 
                 Object.keys(data).forEach(key => {
@@ -339,17 +343,18 @@
                     // Reset the second dropdown and data options reference
                     $dataOptionDropdown.empty().append('<option value="">Please select a version</option>').prop('disabled', true);
                     $s3Location.html('<span class="text-muted">waiting for selection&hellip;</span>');
-                    $copyButton.prop('disabled', true);
+                    // $copyButton.prop('disabled', true);
 
                     if (selectedData && data[selectedData]) {
                         // Populate the second dropdown
                         Object.keys(data[selectedData]).forEach(key => {
-                            $dataOptionDropdown.append($('<option>', {
-                                value: key,
-                                text: key
-                            }));
+                            if (key !== "Description") {
+                                $dataOptionDropdown.append($('<option>', {
+                                    value: key,
+                                    text: key
+                                }));
+                            }
                         });
-
                         $dataOptionDropdown.prop('disabled', false); // Enable the second dropdown
                     }
                 });
@@ -359,15 +364,27 @@
                     const selectedData = $dataTypeDropdown.val();
                     const selectedOption = $(this).val();
 
+                    // Set the Data Locations and Description Boxes
                     if (selectedData && selectedOption && data[selectedData][selectedOption]) {
-                        // Set the docker image reference and enable the copy button
-                        $s3Location.text(data[selectedData][selectedOption]);
+
+                         // Parse the array of values
+                        const arrayValues = data[selectedData][selectedOption];
+
+                        // Generate a code block if the data is an array
+                        if (Array.isArray(arrayValues)) {
+                            const formattedValues = arrayValues.join('\n'); // Join the array values with a newline character
+                            $s3Location.text(formattedValues); // Add the formatted text to the pre/code block
+                        } else {
+                            $s3Location.text(arrayValues); // For non-array data, just display the value
+                        }
+                        // $copyButton.prop('disabled', false);
+
+                        // Display the description
                         $dataDescription.text(data[selectedData]["Description"]);
-                        $copyButton.prop('disabled', false);
                     } else {
                         // Reset the docker image reference and disable the copy button
                         $s3Location.html('<span class="text-muted">waiting for selection&hellip;</span>');
-                        $copyButton.prop('disabled', true);
+                        // $copyButton.prop('disabled', true);
                     }
                 });
             }).fail(function () {
