@@ -344,8 +344,11 @@
                     $dataOptionDropdown.empty().append('<option value="">Please select a version</option>').prop('disabled', true);
                     $s3Location.html('<span class="text-muted">waiting for selection&hellip;</span>');
                     // $copyButton.prop('disabled', true);
+                    $dataDescription.html('<span class="text-muted">waiting for selection&hellip;</span>').prop('disabled', true)
 
                     if (selectedData && data[selectedData]) {
+                        $dataOptionDropdown.prop('disabled', false); // Enable the second dropdown
+
                         // Populate the second dropdown
                         Object.keys(data[selectedData]).forEach(key => {
                             if (key !== "Description") {
@@ -355,11 +358,10 @@
                                 }));
                             }
                         });
-                        $dataOptionDropdown.prop('disabled', false); // Enable the second dropdown
                     }
                 });
 
-                // Update the example data reference when the second dropdown changes
+                // Update the Data Locations + Description when the second dropdown changes
                 $dataOptionDropdown.change(function () {
                     const selectedData = $dataTypeDropdown.val();
                     const selectedOption = $(this).val();
@@ -372,8 +374,8 @@
 
                         // Generate a code block if the data is an array
                         if (Array.isArray(arrayValues)) {
-                            const formattedValues = arrayValues.join('\n'); // Join the array values with a newline character
-                            $s3Location.text(formattedValues); // Add the formatted text to the pre/code block
+                            const formattedValues = arrayValues.join('\n');
+                            $s3Location.text(formattedValues); // Add array to code block
                         } else {
                             $s3Location.text(arrayValues); // For non-array data, just display the value
                         }
@@ -382,7 +384,7 @@
                         // Display the description
                         $dataDescription.text(data[selectedData]["Description"]);
                     } else {
-                        // Reset the docker image reference and disable the copy button
+                        // Reset Data Locations
                         $s3Location.html('<span class="text-muted">waiting for selection&hellip;</span>');
                         // $copyButton.prop('disabled', true);
                     }
@@ -391,7 +393,6 @@
                 console.error('Error loading or parsing JSON');
             });
         });
-
 
     </script>
 </body>
