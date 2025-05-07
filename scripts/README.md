@@ -30,3 +30,5 @@ The script can be executed on a Nextflow script or a configuration file. It perf
    $ bash docker-to-apptainer-nextflow-linter.sh healthomics   # Apply general checks and AWS HealthOmics specific checks
    $ bash docker-to-apptainer-nextflow-linter.sh config         # Apply linter to nextflow.config file
    ```
+
+<p align="center"><img src="demo_docker2apptainer.gif"/></p>
