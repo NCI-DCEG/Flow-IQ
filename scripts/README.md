@@ -24,7 +24,7 @@ The script can be executed on a Nextflow script or a configuration file. It perf
    $ sinteractive
    ```
 
-2. Execute the Bash script to download the Docker image, load the Apptainer module, convert the Docker image to a SIF image, and execute the SIF:
+2. Execute the Bash script to load the Apptainer module, download the Docker image, convert the Docker image to a SIF image, and then execute the SIF:
    ```
    $ bash docker-to-apptainer-nextflow-linter.sh general      # Apply general Nextflow script checks
    $ bash docker-to-apptainer-nextflow-linter.sh healthomics   # Apply general checks and AWS HealthOmics specific checks
