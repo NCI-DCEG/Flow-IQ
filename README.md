@@ -12,7 +12,7 @@
 
 2. **Who is This Toolkit For?**
 
-   * Intended users (e.g. bioinformaticians, pipeline developers)
+   NIH researchers who rely on the Biowulf HPC cluster for their bioinformatics analyses using standard tools, custom scripts, or Nextflow-based workflows.
    * Prerequisites or assumptions (Nextflow experience, etc.)
 
 <br>
