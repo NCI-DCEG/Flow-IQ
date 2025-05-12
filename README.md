@@ -1,10 +1,11 @@
 # Flow-IQ Quick Reference Guide
 
-### 1. What is FlowIQ?
-  **FlowIQ** is a toolkit designed to help NIH researchers migrate their Nextflow bioinformatics workflows from Biowulf to the cloud.
+1. **What is FlowIQ?**
+   
+   **FlowIQ** is a toolkit designed to help NIH researchers migrate their Nextflow bioinformatics workflows from Biowulf to the cloud.
   Key features include:
-  - A [searchable website](https://nci-dceg.github.io/Flow-IQ/) to find Docker images matching Biowulf environment modules, along with curated links to cloud-accessible datasets and references (e.g., mapping Biowulf iGenomes data to s3://ngi-igenomes/ on AWS Open Data).
-  - Guides and GIFs on using a custom linter developed with AWS, as well as the `nf-core/tools` linter, to help ensure your Nextflow pipeline is syntactically correct and cloud-ready.
+      - A [searchable website](https://nci-dceg.github.io/Flow-IQ/) to find Docker images matching Biowulf environment modules, along with curated links to cloud-accessible datasets and references (e.g., mapping Biowulf iGenomes data to s3://ngi-igenomes/ on AWS Open Data).
+      - Guides and GIFs on using a custom linter developed with AWS, as well as the `nf-core/tools` linter, to help ensure your Nextflow pipeline is syntactically correct and cloud-ready.
   
 <br>
 
