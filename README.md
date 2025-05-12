@@ -18,11 +18,14 @@
 <br>
 
 
-3. **Before You Start: Considerations for Nextflow Pipeline Development**
+3. **Before You Start: What You Should Know**
 
-   * Common challenges
-   * Best practices or standards FlowIQ helps enforce
+   - **New to Nextflow?** [Nextflow](https://nextflow.io/docs/latest/index.html) is a workflow system for creating scalable, portable, and reproducible workflows. Consider taking the Nextflow [training tutorial](https://training.nextflow.io/2.0/) to get up to speed.
+   - **New to nf-core?** nf-core is a community effort to collect a curated set of analysis pipelines built with Nextflow. Also see ["What is nf-core?"](https://nf-co.re/docs/usage/getting_started/introduction).
 
+   - **New to linters?** Linters automatically check your code or workflows for errors and best practices. Also see this [Wikipedia article](https://en.wikipedia.org/wiki/Lint_(software)) on linting.
+   - **New to containers?** A container bundles your app and its dependencies so it runs the same everywhere. Also see the [Docker Container Guide](https://docs.docker.com/get-started/workshop/).
+   
 <br>
 
 
