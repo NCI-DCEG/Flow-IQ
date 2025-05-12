@@ -30,34 +30,27 @@
 
 
 4. **Getting Started**
+   
+    Before migrating your pipeline to the cloud, check the following to ensure it's on the right track:
+  
+      - Uses **cloud-accessible paths** for input/output data (e.g., `s3://` instead of local or Biowulf file paths)
+      - Tools are run inside **containers** (e.g., Docker).
+      - **`cpus`** and **`memory`** are explicitly specified for each process
+      - The `executor` in your config is set to a **cloud-compatible option** (e.g., aws-batch)
 
-   * Installation / setup steps (or link to them)
-   * First steps with FlowIQ
 <br>
 
 
 5. **Next Steps**
 
-   * Recommended workflow
-   * Advanced use cases
+   - website https://nci-dceg.github.io/Flow-IQ/
+   - [docker_to_apptainer_nextflow_linter.sh](https://github.com/NCI-DCEG/Flow-IQ/tree/main/scripts#docker_to_apptainer_nextflow_lintersh) which uses https://github.com/jaamarks/linter-rules-for-nextflow.
+   - [nf-core/tools pipeline lint](https://nf-co.re/docs/nf-core-tools/pipelines/lint)
 <br>
 
 
-6. **What is a Linter (and Why Use One)?**
 
-   * Simple explanation
-   * How FlowIQ uses linting to improve pipeline quality
-<br>
-
-
-7. **Additional Resources**
-
-   * Official documentation
-   * Tutorials, blogs, or videos
-<br>
-
-
-8. **Need Help?**
+6. **Need Help?**
 
    * How to report issues (e.g. GitHub Issues)
    * Contact or community support info
