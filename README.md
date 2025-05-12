@@ -12,8 +12,8 @@
 
 2. **Who is This Toolkit For?**
 
-   NIH researchers who rely on the Biowulf HPC cluster for their bioinformatics analyses using standard tools, custom scripts, or Nextflow-based workflows.
-   * Prerequisites or assumptions (Nextflow experience, etc.)
+   - NIH researchers who rely on the Biowulf HPC cluster for their bioinformatics analyses using standard tools, custom scripts, or Nextflow-based workflows.
+   - This toolkit assumes you are working with Nextflow workflow scripts and running analyses on the Biowulf HPC cluster.
 
 <br>
 
