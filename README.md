@@ -81,7 +81,6 @@ If your goal is collaboration or publication, using this tool is highly recommen
 <br>
 
 
-6. **Need Help?**
-
-   * How to report issues (e.g. GitHub Issues)
-   * Contact or community support info
+### 6. Need Help?
+* **Report an issue**: Use the Issues tab in this repo to report bugs or request features.
+* **Contact the developers**: Reach out to @jaamarks or @shukwong for questions or support.
