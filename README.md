@@ -61,10 +61,12 @@ This page includes a README for the script with detailed instructions for how to
 - Cloud-readiness for [AWS HealthOmics](https://aws.amazon.com/healthomics/)
    
 ### Phase 2 – nf-core/tools Linter
-Use the [`nf-core/tools` pipeline lint](https://nf-co.re/docs/guidelines/pipelines/requirements/linting) for a comprehensive standards-based review. This step is especially valuable if you plan to **share, publish, or contribute** your pipeline to the community.
+Use the [`nf-core/tools` pipeline lint](https://nf-co.re/docs/guidelines/pipelines/requirements/linting) for a comprehensive standards-based review. This step is especially valuable if you plan to **share, publish, or contribute** your pipeline to the community. The nf-core community have put together amazing docs for [Getting Started with nf-core](https://nf-co.re/docs/usage/getting_started/introduction) that we encourage you to view.
 
 <details>
   <summary>Expand for `nf-core/tools pipeline lint` details</summary>
+
+<br>
 
 **Why use nf-core/tools?**
 The `nf-core` initiative promotes standardized, reproducible pipelines for the bioinformatics community. The linting tool checks your pipeline against [core requirements](https://nf-co.re/docs/guidelines/pipelines/overview) and highlights areas for improvement.
@@ -81,6 +83,6 @@ If your goal is collaboration or publication, using this tool is highly recommen
 <br>
 
 
-### 6. Need Help?
+## 6. Need Help?
 * **Report an issue**: Use the Issues tab in this repo to report bugs or request features.
 * **Contact the developers**: Reach out to @jaamarks or @shukwong for questions or support.
