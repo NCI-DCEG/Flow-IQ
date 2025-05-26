@@ -136,7 +136,17 @@ nf-core modules install manta/germline
 ```
 This will add the module to your project and update your `modules.json`
 
-<p align="center"><img src="assets/demo_manta.gif"/></p>
+<p align="left">
+   <img src="assets/demo_manta.gif", width="75%" />
+</p>
+
+
+<!--
+<p float="left">
+  <img src="assets/demo_manta.gif" width="45%" />
+  <img src="assets/demo_manta.gif" width="45%" />
+</p>
+-->
 
 ## Step 5: Build a One-Step Workflow
 
