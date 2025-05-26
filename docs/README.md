@@ -1,50 +1,56 @@
 # Using Flow-IQ
+Flow-IQ is a toolkit designed to help NIH researchers migrate and adapt their Nextflow-based pipelines—especially those relying on nf-core modules—from Biowulf HPC cluster to the AWS cloud.
+
+This guide is organized into two main sections:
+1. **Getting Started: Migrating to the Cloud** – How to use Flow-IQ to migrate an existing pipeline.
+2. **Custom Pipeline Developement:** How to go from an nf-core module to a custom pipeline, run it on Biowulf, and then deploy it on AWS HealthOmics.
 
 
 ## Before You Start: What You Should Know
+If you’re new to any of the core technologies used in Flow-IQ, here are some helpful resources:
 
-   - **New to Nextflow?** [Nextflow](https://nextflow.io/docs/latest/index.html) is a workflow system for creating scalable, portable, and reproducible workflows. Consider taking the Nextflow [training tutorial](https://training.nextflow.io/2.0/) to get up to speed.
-   - **New to nf-core?** nf-core is a community effort to collect a curated set of analysis pipelines built with Nextflow. Also see ["What is nf-core?"](https://nf-co.re/docs/usage/getting_started/introduction).
-   - **New to linters?** Linters automatically check your code or workflows for errors and best practices. Also see this [Wikipedia article](https://en.wikipedia.org/wiki/Lint_(software)) on linting.
-   - **New to containers?** A container bundles your app and its dependencies so it runs the same everywhere. Also see the [Docker Container Guide](https://docs.docker.com/get-started/workshop/).
+   - **Nextflow:** [Nextflow](https://nextflow.io/docs/latest/index.html) A workflow system for creating scalable, portable, and reproducible workflows. Consider taking the Nextflow [training tutorial](https://training.nextflow.io/2.0/) to get up to speed.
+   - **nf-core:** A community effort to collect a curated set of analysis pipelines built with Nextflow. Also see ["What is nf-core?"](https://nf-co.re/docs/usage/getting_started/introduction).
+   - **Linters:** Tools that check code for errors or non-compliance with standards. Also see this [Wikipedia article](https://en.wikipedia.org/wiki/Lint_(software)) on linting.
+   - **Containers:** Bundles your app and its dependencies so it runs the same everywhere. Also see the [Docker Container Guide](https://docs.docker.com/get-started/workshop/).
    
 <br><br>
 
 
 
-## Getting Started
+# 🚀 Getting Started: Migrating to the Cloud
    
-Before migrating your pipeline to the cloud, check the following to ensure it's on the right track: 
+Before migrating your pipeline to the cloud, check the following to ensure it meets basic cloud-readiness criteria:
 - Uses **cloud-accessible paths** for input/output data (e.g., `s3://` instead of local or Biowulf file paths)
-- Tools are run inside **containers** (e.g., Docker).
-- **`cpus`** and **`memory`** are explicitly specified for each process
-- The `executor` in your config is set to a **cloud-compatible option** (e.g., aws-batch)
+- Tools are executed within **containers** (e.g., Docker or Apptainer).
+- Specifies **`cpus`** and **`memory`** for each process
+- Use a **cloud-compatible executor** in your config (e.g., aws-batch)
 
 <br>
 
 
 
-## Migrating and Validating Your Workflow
-After completing the "Getting Started" steps above, use the [FlowIQ website](https://nci-dceg.github.io/Flow-IQ/) to begin adapting your workflow for the cloud:
+## Adapt Your Pipeline For Cloud
+Use the [FlowIQ website](https://nci-dceg.github.io/Flow-IQ/) to begin adapting your workflow for the cloud:
 
-1. **Replace Biowulf modules with Docker containers**<br>
-Use the Docker Image Builder to find containers matching Biowulf environment modules. Swap these into your Nextflow script to replace module load statements.
-1. **Update data paths to cloud-hosted datasets**<br>
-Use the Example Data Builder to find cloud-accessible versions of common datasets (e.g., iGenomes on AWS).
-1. **Validate your workflow using a two-phase linting approach**<br>
-Ensure compatibility and code quality before deployment:
+1. **Swap Biowulf Modules for Containers**<br> – Use the Docker Image Builder to find container equivalents for Biowulf environment modules and update your script accordingly.
+1. **Update Data Paths**<br> – Use the Example Data Builder to locate cloud-hosted datasets (e.g., iGenomes on AWS).
+
+## Validate your Workflow: Two-phase linting
+Ensure your pipeline is cloud-ready and follows best practices using a two-phase linting approach.
 
 ### Phase 1 – Lightweight Cloud Linter
-We created a [custom script](https://github.com/NCI-DCEG/Flow-IQ/tree/main/scripts) to facilitate running the `linter-rules-for-nextflow` Docker container (converts the Docker to Apptainer).
-This page includes a README for the script with detailed instructions for how to use the tool for fast checks, including:
-- Syntax validation (e.g., cpus, memory, container directives)
-- Cloud-readiness for [AWS HealthOmics](https://aws.amazon.com/healthomics/)
+Use our [custom script](https://github.com/NCI-DCEG/Flow-IQ/tree/main/scripts) to run `linter-rules-for-nextflow` Docker container (converts to Apptainer).
+
+This quick-check tool validates:
+- Syntax (e.g., cpus, memory, container directives)
+- Cloud readiness for [AWS HealthOmics](https://aws.amazon.com/healthomics/)
    
 ### Phase 2 – nf-core/tools Linter
-Use the [`nf-core/tools` pipeline lint](https://nf-co.re/docs/guidelines/pipelines/requirements/linting) for a comprehensive standards-based review. This step is especially valuable if you plan to **share, publish, or contribute** your pipeline to the community. The nf-core community have put together amazing docs for [Getting Started with nf-core](https://nf-co.re/docs/usage/getting_started/introduction) that we encourage you to view.
+For a more comprehensive check, run the [`nf-core/tools` lint](https://nf-co.re/docs/guidelines/pipelines/requirements/linting). This is especially usefule if you plan to **share, publish, or contribute** your pipeline. The nf-core community have put together amazing docs for [Getting Started with nf-core](https://nf-co.re/docs/usage/getting_started/introduction) that we encourage you to view.
 
 <details>
-  <summary>Expand for `nf-core/tools pipeline lint` details</summary>
+  <summary>Expand for `nf-core/tools lint` details</summary>
 
 <br>
 
@@ -66,8 +72,23 @@ If your goal is collaboration or publication, using this tool is highly recommen
 
 
 
-# Custom Pipeline Development
-In this section, we’ll guide you through the process of transitioning from using a specific nf-core module to building a custom pipeline that runs on an HPC system (e.g., Biowulf), and then modifying that pipeline using the Flow-IQ toolkit to make it compatible with AWS HealthOmics.
-	
-For example, if you’ve been working with the nf-core Sarek pipeline but are particularly interested in using the Manta module within a custom workflow, we’ll show you how to extract and adapt that module into your own pipeline. From there, we’ll walk you through the steps required to make the pipeline AWS HealthOmics-compatible, allowing for seamless execution in the cloud.
+# 🧱 Custom Pipeline Development
+This section covers how to build a custom pipeline using an nf-core module, run it on Biowulf HPC, and adapt it for AWS HealthOmics with Flow-IQ.
+
+### Example:
+If you’re using the nf-core **[Sarek](https://nf-co.re/sarek/3.5.1/)** pipeline but only need the **[Manta germline](https://nf-co.re/modules/manta_germline/)** module, we'll show you how to extract it and build a standalone workflow. Then you will learn how to make it ready to run on AWS HealthOmics.
+
+## What is an nf-core?
+
+## What is an nf-core module?
+
+## How to use an nf-core module for your custom pipeline?
+
+## How to test on Biowulf
+
+## How to prepare pipeline for AWS HealthOmics
+
+## Deploying on AWS HealthOmics
+
+## Troubleshooting / Tips
 
