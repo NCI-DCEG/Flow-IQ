@@ -1,0 +1,459 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /shared/jaamarks/nf-core/nci-dceg-flowiq
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 145
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 36
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Terminalizer
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 0
+    content: "\r\e"
+  - delay: 680
+    content: "\e[?2004h(base) \e[01;32mjaamarks@ip-172-0-0-0\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 1616
+    content: c
+  - delay: 88
+    content: o
+  - delay: 76
+    content: 'n'
+  - delay: 44
+    content: d
+  - delay: 127
+    content: a
+  - delay: 193
+    content: ' '
+  - delay: 100
+    content: a
+  - delay: 144
+    content: c
+  - delay: 188
+    content: t
+  - delay: 95
+    content: i
+  - delay: 60
+    content: v
+  - delay: 164
+    content: a
+  - delay: 93
+    content: t
+  - delay: 43
+    content: e
+  - delay: 109
+    content: ' '
+  - delay: 83
+    content: 'n'
+  - delay: 97
+    content: f
+  - delay: 199
+    content: '-'
+  - delay: 145
+    content: c
+  - delay: 128
+    content: o
+  - delay: 84
+    content: r
+  - delay: 116
+    content: e
+  - delay: 140
+    content: "\r\n\e[?2004l\r"
+  - delay: 186
+    content: "\e[?2004h(nf-core) \e[01;32mjaamarks@ip-172-0-0-0\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 1780
+    content: 'n'
+  - delay: 81
+    content: f
+  - delay: 164
+    content: '-'
+  - delay: 76
+    content: c
+  - delay: 128
+    content: o
+  - delay: 88
+    content: r
+  - delay: 108
+    content: e
+  - delay: 201
+    content: "\r\n\e[?2004l\r"
+  - delay: 671
+    content: "\r\n\r\n\e[32m                                          ,--.\e[0m\e[38;5;241m/\e[0m\e[32m,-.\e[0m\r\n\e[34m          ___     __   __   __   ___     \e[0m\e[32m/,-._.--~\\ \e[0m\r\n\e[34m    |\\ | |__  __ /  ` /  \\ |__) |__      \e[0m\e[33m   }  {\e[0m\r\n\e[34m    | \\| |       \\__, \\__/ |  \\ |___     \e[0m\e[32m\\`-._,-`-,\e[0m\r\n\e[32m                                          `._,._,'\e[0m\r\n\r\n\e[38;5;241m    nf-core/tools version 3.2.1 - \e[0m\e]8;id=991828;https://nf-co.re\e\\\e[38;5;241mhttps://nf-co.re\e[0m\e]8;;\e\\\r\n"
+  - delay: 116
+    content: "\r\n\r\n                                                                                                    \r\n \e[33mUsage:\e[0m \e[1mnf-core\e[0m [\e[1;36mOPTIONS\e[0m] \e[1;36mCOMMAND\e[0m [\e[1;36mARGS\e[0m]...                                                         \r\n                                                                                                    \r\n nf-core/tools provides a set of helper tools for use with nf-core Nextflow pipelines.              \r\n \e[2mIt is designed for both end-users running pipelines and also developers creating new pipelines.\e[0m    \r\n                                                                                                    \r\n\e[2m╭─\e[0m\e[2m Commands \e[0m\e[2m──────────────────────────────────────────────────────────────────────────────────────\e[0m\e[2m─╮\e[0m\r\n\e[2m│\e[0m \e[1;36mpipelines       \e[0m\e[1;36m \e[0m Commands to manage nf-core pipelines.                                          \e[2m│\e[0m\r\n\e[2m│\e[0m \e[1;36mmodules         \e[0m\e[1;36m \e[0m Commands to manage Nextflow DSL2 modules (tool wrappers).                      \e[2m│\e[0m\r\n\e[2m│\e[0m \e[1;36msubworkflows    \e[0m\e[1;36m \e[0m Commands to manage Nextflow DSL2 subworkflows (tool wrappers).                 \e[2m│\e[0m\r\n\e[2m│\e[0m \e[1;36minterface       \e[0m\e[1;36m \e[0m Launch the nf-core interface                                                   \e[2m│\e[0m\r\n\e[2m╰──────────────────────────────────────────────────────────────────────────────────────────────────╯\e[0m\r\n\e[2m╭─\e[0m\e[2m Options \e[0m\e[2m───────────────────────────────────────────────────────────────────────────────────────\e[0m\e[2m─╮\e[0m\r\n\e[2m│\e[0m \e[1;36m--version\e[0m            \e[1;33m          \e[0m  Show the version and exit.                                      \e[2m│\e[0m\r\n\e[2m│\e[0m \e[1;36m--verbose\e[0m        \e[1;32m-v\e[0m  \e[1;33m          \e[0m  Print verbose output to the console.                            \e[2m│\e[0m\r\n\e[2m│\e[0m \e[1;36m--hide-progress\e[0m      \e[1;33m          \e[0m  Don't show progress bars.                                       \e[2m│\e[0m\r\n\e[2m│\e[0m \e[1;36m--log-file\e[0m       \e[1;32m-l\e[0m  \e[1;2;33m<\e[0m\e[1;33mfilename\e[0m\e[1;2;33m>\e[0m  Save a verbose log to a file.                                   \e[2m│\e[0m\r\n\e[2m│\e[0m \e[1;36m--help\e[0m           \e[1;32m-h\e[0m  \e[1;33m          \e[0m  Show this message and exit.                                     \e[2m│\e[0m\r\n\e[2m╰──────────────────────────────────────────────────────────────────────────────────────────────────╯\e[0m\r\n\r\n"
+  - delay: 110
+    content: "\e[?2004h(nf-core) \e[01;32mjaamarks@ip-172-0-0-0\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 2033
+    content: 'n'
+  - delay: 91
+    content: f
+  - delay: 221
+    content: '-'
+  - delay: 116
+    content: c
+  - delay: 148
+    content: o
+  - delay: 67
+    content: r
+  - delay: 124
+    content: e
+  - delay: 365
+    content: ' '
+  - delay: 168
+    content: m
+  - delay: 124
+    content: o
+  - delay: 128
+    content: d
+  - delay: 155
+    content: u
+  - delay: 121
+    content: l
+  - delay: 107
+    content: e
+  - delay: 209
+    content: s
+  - delay: 392
+    content: ' '
+  - delay: 259
+    content: i
+  - delay: 76
+    content: 'n'
+  - delay: 61
+    content: f
+  - delay: 103
+    content: o
+  - delay: 1104
+    content: "\r\n\e[?2004l\r"
+  - delay: 670
+    content: "\r\n\r\n\e[32m                                          ,--.\e[0m\e[38;5;241m/\e[0m\e[32m,-.\e[0m\r\n\e[34m          ___     __   __   __   ___     \e[0m\e[32m/,-._.--~\\ \e[0m\r\n\e[34m    |\\ | |__  __ /  ` /  \\ |__) |__      \e[0m\e[33m   }  {\e[0m\r\n\e[34m    | \\| |       \\__, \\__/ |  \\ |___     \e[0m\e[32m\\`-._,-`-,\e[0m\r\n\e[32m                                          `._,._,'\e[0m\r\n\r\n\e[38;5;241m    nf-core/tools version 3.2.1 - \e[0m\e]8;id=792591;https://nf-co.re\e\\\e[38;5;241mhttps://nf-co.re\e[0m\e]8;;\e\\\r\n"
+  - delay: 39
+    content: "\r\n\r\n"
+  - delay: 5
+    content: "\e[?25l\r\e[2K\e[1;34mPulling from \e[0m\e[1;32m'nf-core/modules'\e[0m\e[1;34m (\e[0m\e]8;id=851811;https://github.com/nf-core/modules.git\e\\\e[1;34mhttps://github.com/nf-core/modules.git\e[0m\e]8;;\e\\\e[1;34m)\e[0m \e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m \e[1;33mWaiting for response\e[0m"
+  - delay: 100
+    content: "\r\e[2K\e[1;34mPulling from \e[0m\e[1;32m'nf-core/modules'\e[0m\e[1;34m (\e[0m\e]8;id=864677;https://github.com/nf-core/modules.git\e\\\e[1;34mhttps://github.com/nf-core/modules.git\e[0m\e]8;;\e\\\e[1;34m)\e[0m \e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m \e[1;33mWaiting for response\e[0m"
+  - delay: 57
+    content: "\r\e[2K\e[1;34mPulling from \e[0m\e[1;32m'nf-core/modules'\e[0m\e[1;34m (\e[0m\e]8;id=326626;https://github.com/nf-core/modules.git\e\\\e[1;34mhttps://github.com/nf-core/modules.git\e[0m\e]8;;\e\\\e[1;34m)\e[0m \e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m \e[1;33mWaiting for response\e[0m\r\n\e[?25h\r\e[1A\e[2K"
+  - delay: 29
+    content: "\e[34mINFO    \e[0m Reinstalling modules found in \e[32m'modules.json'\e[0m but missing from directory: \e[32m'modules/nf-core/manta/germline'\e[0m                               \r\n"
+  - delay: 776
+    content: "\e[?12l\e[?25h\e[6n\e[?2004h\e[?1l\e[?25l\e[0m\e[?7l\e[0m\e[J\e[0;34;1m?\e[0;1m Is the module locally installed? \e[0m(Y/n)\e[40D\e[41C\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 5
+    content: "\e[?25l\e[?7l\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 2189
+    content: "\e[?25l\e[?7l\e[41D\e[0m\e[J\e[0;34;1m?\e[0;1m Is the module locally installed? \e[0;32mNo\e[37D\e[0m\r\r\n\e[J\e[?7h\e[0m\e[?12l\e[?25h\e[?2004l"
+  - delay: 190
+    content: "\e[6n\e[?2004h\e[?1l\e[?25l\e[0m\e[?7l\e[0m\e[J\e[0;34;1m?\e[0;1m Please select a module\e[0m\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\r\r\n\e[0m \b\e[7A\e[25C\e[?7h\e[0m\e[?12l\e[?25h\e[?25l\e[?7l\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 2666
+    content: "\e[?25l\e[?7l\e[0;32mm\e[0m\r\r\n\e[26C\e[0;32m abricate/su\e[0;32;1;4mm\e[0;32mmary                                      \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[26C\e[0;32m abrita\e[0;32;1;4mm\e[0;32mr/run                                          \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[26C\e[0;32m adapterre\e[0;32;1;4mm\e[0;32moval                                        \e[0;38;5;16;48;5;248m \e[0m\r\r\n\e[26C\e[0;32m adapterre\e[0;32;1;4mm\e[0;32movalfixprefix                               \e[0;38;5;16;48;5;248m \e[0m\r\r\n\e[26C\e[0;32m ad\e[0;32;1;4mm\e[0;32mixture                                             \e[0;38;5;16;48;5;248m \e[0m\r\r\n\e[26C\e[0;32m affy/justr\e[0;32;1;4mm\e[0;32ma                                          \e[0;38;5;16;48;5;248m \e[0m\r\r\n\e[26C\e[0;32m agat/spfilterfeaturefro\e[0;32;1;4mm\e[0;32mkilllist                      \e[0;38;5;16;48;5;248m \e[7A\e[56D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 71
+    content: "\e[?25l\e[?7l\e[0;32ma\e[0m\r\r\n\e[26C\e[0m \e[0;32m abricate/su\e[C\e[0;32;1;4mma\e[0;32mry\e[37C \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[26C\e[0m \e[0;32m affy/justr\e[0;32;1;4mma\e[41C\e[0;32m \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[26C\e[0m \e[0;32m antis\e[0;32;1;4mma\e[0;32msh/antismashlite\e[30C \e[0;38;5;16;48;5;248m \e[0m\r\r\n\e[26C\e[0m \e[0;32m antis\e[0;32;1;4mma\e[0;32msh/antismashl\e[Ctedownloaddatabases\e[13C \e[0;38;5;16;48;5;248m \e[0m\r\r\n\e[26C\e[0m \e[0;32m atlasgeneannotation\e[0;32;1;4mma\e[0;32mnipulation/gtf2featureannotation \e[0;38;5;16;48;5;248m \e[0m\r\r\n\e[26C\e[0m \e[0;32m ba\e[0;32;1;4mma\e[0;32mligncleaner\e[38C \e[0;38;5;16;48;5;248m \e[0m\r\r\n\e[26C\e[0m \e[0;32m b\e[Cndage/i\e[0;32;1;4mma\e[0;32mge                  \e[22C \e[0;38;5;16;48;5;248m \e[7A\e[56D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 110
+    content: "\e[?25l\e[?7l\e[0;32mn\e[0m\r\r\n\e[27C\e[0m \e[0;32m atlasg\e[Cneannotation\e[0;32;1;4mman\e[0;32mipulation/gtf2featureannotation \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[27C\e[0m \e[0;32m \e[0;32;1;4mman\e[0;32mta/convertinversion\e[31C \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[27C\e[0m \e[0;32m \e[0;32;1;4mman\e[0;32mta/germline        \e[31C \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[27C\e[0m \e[0;32m \e[0;32;1;4mman\e[0;32mta/\e[Com\e[Ctic                          \e[14C \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[27C\e[0m \e[0;32m \e[0;32;1;4mman\e[0;32mta/tumoronly                                       \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[C\e[0m\e[K\e[0m\r\r\n\e[C\e[0m\e[K\e[7A\e[27C\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 124
+    content: "\e[?25l\e[?7l\e[0;32mt\e[0m\r\r\n\e[28C\e[0m \e[0;32m \e[0;32;1;4mmant\e[0;32ma/conver\e[Cinversion \e[0;38;5;16;48;5;238m \e[0m\e[K\e[0m\r\r\n\e[28C\e[0m \e[0;32m \e[0;32;1;4mmant\e[0;32ma/germline       \e[2C\e[0;38;5;16;48;5;238m \e[0m\e[K\e[0m\r\r\n\e[28C\e[0m \e[0;32m \e[0;32;1;4mmant\e[0;32ma/so\e[Catic\e[10C\e[0;38;5;16;48;5;238m \e[0m\e[K\e[0m\r\r\n\e[28C\e[0m \e[0;32m \e[0;32;1;4mmant\e[0;32ma/tumoronly        \e[0;38;5;16;48;5;238m \e[0m\e[K\e[0m\r\r\n\e[C\e[0m\e[K\e[5A\e[28C\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 188
+    content: "\e[?25l\e[?7l\e[0;32ma\e[0m\r\r\n\e[29C\e[0m \e[0;32m \e[0;32;1;4mmanta\e[0;32m/convertinversion \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[29C\e[0m \e[0;32m \e[0;32;1;4mmanta\e[0;32m/germline\e[8C \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[29C\e[0m \e[0;32m \e[0;32;1;4mmanta\e[0;32m/somatic\e[9C \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[29C\e[0m \e[0;32m \e[0;32;1;4mmanta\e[0;32m/tumoronly\e[7C \e[0;38;5;16;48;5;238m \e[4A\e[25D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 744
+    content: "\e[?25l\e[?7l\e[0;32m/\e[0m\r\r\n\e[30C\e[0m \e[0;32m \e[0;32;1;4mmanta/\e[0;32mconvertinversion \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[30C\e[0m \e[0;32m \e[0;32;1;4mmanta/\e[0;32mgermline\e[8C \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[30C\e[0m \e[0;32m \e[0;32;1;4mmanta/\e[0;32msomatic\e[9C \e[0;38;5;16;48;5;238m \e[0m\r\r\n\e[30C\e[0m \e[0;32m \e[0;32;1;4mmanta/\e[0;32mtumoronly\e[7C \e[0;38;5;16;48;5;238m \e[4A\e[25D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 182
+    content: "\e[?25l\e[?7l\e[0;32mm\e[0m\r\r\n\e[C\e[0m\e[K\e[0m\r\r\n\e[C\e[0m\e[K\e[0m\r\r\n\e[C\e[0m\e[K\e[0m\r\r\n\e[C\e[0m\e[K\e[4A\e[31C\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 417
+    content: "\e[?25l\e[?7l\e[0;32me\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 304
+    content: "\e[?25l\e[?7l\b\e[0m\e[K\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 123
+    content: "\e[?25l\e[?7l\b\e[0m\e[K\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 333
+    content: "\e[?25l\e[?7l\e[0;32mg\e[0m\r\r\n\e[32C\e[0;32m \e[0;32;1;4mmanta/g\e[0;32mermline \e[0;38;5;16;48;5;238m \e[A\e[17D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 128
+    content: "\e[?25l\e[?7l\e[0;32me\e[0m\r\r\n\e[32C\e[0m \e[0;32m \e[0;32;1;4mmanta/ge\e[0;32mrmline \e[0;38;5;16;48;5;238m \e[A\e[17D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 108
+    content: "\e[?25l\e[?7l\e[0;32mr\e[0m\r\r\n\e[33C\e[0m \e[0;32m \e[0;32;1;4mmanta/ger\e[0;32mmline \e[0;38;5;16;48;5;238m \e[A\e[17D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 256
+    content: "\e[?25l\e[?7l\e[0;32mm\e[0m\r\r\n\e[34C\e[0m \e[0;32m \e[0;32;1;4mmanta/germ\e[0;32mline \e[0;38;5;16;48;5;238m \e[A\e[17D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 352
+    content: "\e[?25l\e[?7l\e[0;32ml\e[0m\r\r\n\e[35C\e[0m \e[0;32m \e[0;32;1;4mmanta/germl\e[0;32mine \e[0;38;5;16;48;5;238m \e[A\e[17D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 64
+    content: "\e[?25l\e[?7l\e[0;32mi\e[0m\r\r\n\e[36C\e[0m \e[0;32m \e[0;32;1;4mmanta/germli\e[0;32mne \e[0;38;5;16;48;5;238m \e[A\e[17D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 39
+    content: "\e[?25l\e[?7l\e[0;32mn\e[0m\r\r\n\e[37C\e[0m \e[0;32m \e[0;32;1;4mmanta/germlin\e[0;32me \e[0;38;5;16;48;5;238m \e[A\e[17D\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 108
+    content: "\e[?25l\e[?7l\e[0;32me\e[0m\r\r\n\e[C\e[0m\e[K\e[A\e[38C\e[?7h\e[0m\e[?12l\e[?25h"
+  - delay: 364
+    content: "\e[?25l\e[?7l\e[39D\e[0m\e[J\e[0;34;1m?\e[0;1m Please select a module \e[0;32mmanta/germline\e[39D\e[0m\r\r\n\e[J\e[?7h\e[0m\e[?12l\e[?25h\e[?2004l"
+  - delay: 204
+    content: "╭─ \e[1mModule: \e[0m\e[1;32mmanta/germline \e[0m ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\r\n│ \U0001F310 Repository: \e]8;id=582612;{self.remote_location}\e\\https://github.com/nf-core/modules.git\e]8;;\e\\                                                                                         │\r\n│ \e[2m\U0001F527 Tools: \e[0m\e]8;id=957677;https://github.com/Illumina/manta\e\\\e[2mmanta\e[0m\e]8;;\e\\                                                                                                                               │\r\n│ \e[2m\U0001F4D6 Description: Manta calls structural variants (SVs) and indels from mapped paired-end sequencing reads. It is optimized for analysis of \e[0m    │\r\n│ \e[2mgermline variation in small sets of individuals and somatic variation in tumor/normal sample pairs.\e[0m                                           │\r\n╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\r\n                        ╷                                                                                                  ╷                     \r\n \e[1m\U0001F4E5 Inputs              \e[0m│\e[1mDescription                                                                                       \e[0m│\e[1m             Pattern\e[0m \r\n╺━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━╸\r\n \e[3minput[0]\e[0m               │                                                                                                  │\e[32m                    \e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[38;5;214;40m meta \e[0m\e[2;3m (map)\e[0m           │Groovy Map containing sample information e.g. [ id:'test', single_end:false ]                     │\e[32m                    \e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[38;5;214;40m input \e[0m\e[2;3m (file)\e[0m         │BAM/CRAM/SAM file. For joint calling use a list of files.                                         │\e[32m    *.{bam,cram,sam}\e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[38;5;214;40m index \e[0m\e[2;3m (file)\e[0m         │BAM/CRAM/SAM index file. For joint calling use a list of files.                                   │\e[32m    *.{bai,crai,sai}\e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[38;5;214;40m target_bed \e[0m\e[2;3m (file)\e[0m    │BED file containing target regions for variant calling                                            │\e[32m             *.{bed}\e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[38;5;214;40m target_bed_tbi \e[0m\e[2;3m (file)\e[0m│Index for BED file containing target regions for variant calling                                  │\e[32m         *.{bed.tbi}\e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[3minput[1]\e[0m               │                                                                                                  │\e[32m                    \e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[38;5;214;40m meta2 \e[0m\e[2;3m (map)\e[0m          │Groovy Map containing reference information e.g. [ id:'genome' ]                                  │\e[32m                    \e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[38;5;214;40m fasta \e[0m\e[2;3m (file)\e[0m         │Genome reference FASTA file                                                                       │\e[32m        *.{fa,fasta}\e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[3minput[2]\e[0m               │                                                                                                  │\e[32m                    \e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[38;5;214;40m meta3 \e[0m\e[2;3m (map)\e[0m          │Groovy Map containing reference information e.g. [ id:'genome' ]                                  │\e[32m                    \e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[38;5;214;40m fai \e[0m\e[2;3m (file)\e[0m           │Genome reference FASTA index file                                                                 │\e[32m*.{fa.fai,fasta.fai}\e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[3minput[3]\e[0m               │                                                                                                  │\e[32m                    \e[0m \r\n╶───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────╴\r\n \e[38;5;214;40m config \e[0m\e[2;3m (file)\e[0m        │Manta configuration file                                                                          │\e[32m *.{ini,conf,config}\e[0m \r\n                        ╵                                                                                                  ╵                     \r\n                                            ╷                                                                                    ╷               \r\n \e[1m\U0001F4E5 Outputs                                 \e[0m│\e[1mDescription                                                                         \e[0m│\e[1m       Pattern\e[0m \r\n╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━╸\r\n candidate_small_indels_vcf                 │                                                                                    │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m meta \e[0m\e[2;3m (map)\e[0m                               │Groovy Map containing sample information e.g. [ id:'test', single_end:false ]       │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m *candidate_small_indels.vcf.gz \e[0m\e[2;3m (file)\e[0m    │Gzipped VCF file containing variants                                                │\e[32m    *.{vcf.gz}\e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n candidate_small_indels_vcf_tbi             │                                                                                    │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m meta \e[0m\e[2;3m (map)\e[0m                               │Groovy Map containing sample information e.g. [ id:'test', single_end:false ]       │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m *candidate_small_indels.vcf.gz.tbi \e[0m\e[2;3m (file)\e[0m│Index for gzipped VCF file containing variants                                      │\e[32m*.{vcf.gz.tbi}\e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n candidate_sv_vcf                           │                                                                                    │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m meta \e[0m\e[2;3m (map)\e[0m                               │Groovy Map containing sample information e.g. [ id:'test', single_end:false ]       │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m *candidate_sv.vcf.gz \e[0m\e[2;3m (file)\e[0m              │Gzipped VCF file containing variants                                                │\e[32m    *.{vcf.gz}\e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n candidate_sv_vcf_tbi                       │                                                                                    │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m meta \e[0m\e[2;3m (map)\e[0m                               │Groovy Map containing sample information e.g. [ id:'test', single_end:false ]       │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m *candidate_sv.vcf.gz.tbi \e[0m\e[2;3m (file)\e[0m          │Index for gzipped VCF file containing variants                                      │\e[32m*.{vcf.gz.tbi}\e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n diploid_sv_vcf                             │                                                                                    │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m meta \e[0m\e[2;3m (map)\e[0m                               │Groovy Map containing sample information e.g. [ id:'test', single_end:false ]       │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m *diploid_sv.vcf.gz \e[0m\e[2;3m (file)\e[0m                │Gzipped VCF file containing variants                                                │\e[32m    *.{vcf.gz}\e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n diploid_sv_vcf_tbi                         │                                                                                    │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m meta \e[0m\e[2;3m (map)\e[0m                               │Groovy Map containing sample information e.g. [ id:'test', single_end:false ]       │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m *diploid_sv.vcf.gz.tbi \e[0m\e[2;3m (file)\e[0m            │Index for gzipped VCF file containing variants                                      │\e[32m*.{vcf.gz.tbi}\e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n versions                                   │                                                                                    │\e[32m              \e[0m \r\n╶───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼──────────────╴\r\n \e[38;5;214;40m versions.yml \e[0m\e[2;3m (file)\e[0m                      │File containing software versions                                                   │\e[32m  versions.yml\e[0m \r\n                                            ╵                                                                                    ╵               \r\n\r\n \U0001F4BB  Installation command: \e[35mnf-core modules install manta/germline\e[0m\r\n\r\n"
+  - delay: 116
+    content: "\e[?2004h(nf-core) \e[01;32mjaamarks@ip-172-0-0-0\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 2131
+    content: 'n'
+  - delay: 107
+    content: f
+  - delay: 128
+    content: '-'
+  - delay: 87
+    content: c
+  - delay: 128
+    content: o
+  - delay: 117
+    content: r
+  - delay: 84
+    content: e
+  - delay: 264
+    content: ' '
+  - delay: 144
+    content: m
+  - delay: 160
+    content: o
+  - delay: 147
+    content: d
+  - delay: 157
+    content: u
+  - delay: 132
+    content: l
+  - delay: 63
+    content: e
+  - delay: 184
+    content: s
+  - delay: 105
+    content: ' '
+  - delay: 175
+    content: i
+  - delay: 64
+    content: 'n'
+  - delay: 44
+    content: s
+  - delay: 129
+    content: t
+  - delay: 143
+    content: a
+  - delay: 85
+    content: l
+  - delay: 188
+    content: l
+  - delay: 88
+    content: ' '
+  - delay: 88
+    content: m
+  - delay: 112
+    content: a
+  - delay: 136
+    content: 'n'
+  - delay: 119
+    content: t
+  - delay: 181
+    content: a
+  - delay: 143
+    content: /
+  - delay: 365
+    content: g
+  - delay: 124
+    content: e
+  - delay: 116
+    content: r
+  - delay: 60
+    content: m
+  - delay: 239
+    content: l
+  - delay: 65
+    content: i
+  - delay: 108
+    content: 'n'
+  - delay: 163
+    content: e
+  - delay: 408
+    content: "\r\n\e[?2004l\r"
+  - delay: 682
+    content: "\r\n\r\n\e[32m                                          ,--.\e[0m\e[38;5;241m/\e[0m\e[32m,-.\e[0m\r\n\e[34m          ___     __   __   __   ___     \e[0m\e[32m/,-._.--~\\ \e[0m\r\n\e[34m    |\\ | |__  __ /  ` /  \\ |__) |__      \e[0m\e[33m   }  {\e[0m\r\n\e[34m    | \\| |       \\__, \\__/ |  \\ |___     \e[0m\e[32m\\`-._,-`-,\e[0m\r\n\e[32m                                          `._,._,'\e[0m\r\n\r\n\e[38;5;241m    nf-core/tools version 3.2.1 - \e[0m\e]8;id=219922;https://nf-co.re\e\\\e[38;5;241mhttps://nf-co.re\e[0m\e]8;;\e\\\r\n"
+  - delay: 41
+    content: "\r\n\r\n"
+  - delay: 5
+    content: "\e[?25l\r\e[2K\e[1;34mPulling from \e[0m\e[1;32m'nf-core/modules'\e[0m\e[1;34m (\e[0m\e]8;id=847602;https://github.com/nf-core/modules.git\e\\\e[1;34mhttps://github.com/nf-core/modules.git\e[0m\e]8;;\e\\\e[1;34m)\e[0m \e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m \e[1;33mWaiting for response\e[0m"
+  - delay: 100
+    content: "\r\e[2K\e[1;34mPulling from \e[0m\e[1;32m'nf-core/modules'\e[0m\e[1;34m (\e[0m\e]8;id=260792;https://github.com/nf-core/modules.git\e\\\e[1;34mhttps://github.com/nf-core/modules.git\e[0m\e]8;;\e\\\e[1;34m)\e[0m \e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m \e[1;33mWaiting for response\e[0m"
+  - delay: 43
+    content: "\r\e[2K\e[1;34mPulling from \e[0m\e[1;32m'nf-core/modules'\e[0m\e[1;34m (\e[0m\e]8;id=40381;https://github.com/nf-core/modules.git\e\\\e[1;34mhttps://github.com/nf-core/modules.git\e[0m\e]8;;\e\\\e[1;34m)\e[0m \e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;237m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m\e[38;5;197m━\e[0m \e[1;33mWaiting for response\e[0m\r\n\e[?25h\r\e[1A\e[2K"
+  - delay: 664
+    content: "\e[34mINFO    \e[0m Module \e[32m'manta/germline'\e[0m is already installed.                                                                                           \r\n\e[34mINFO    \e[0m To update \e[32m'manta/germline'\e[0m run \e[32m'nf-core modules update manta/germline'\e[0m. To force reinstallation use \e[32m'--force'\e[0m.                          \r\n"
+  - delay: 110
+    content: "\e[?2004h(nf-core) \e[01;32mjaamarks@ip-172-0-0-0\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 2655
+    content: l
+  - delay: 152
+    content: s
+  - delay: 148
+    content: ' '
+  - delay: 164
+    content: m
+  - delay: 116
+    content: o
+  - delay: 192
+    content: d
+  - delay: 852
+    content: l
+  - delay: 230
+    content: "\a"
+  - delay: 473
+    content: "\b\e[K"
+  - delay: 16
+    content: '='
+  - delay: 508
+    content: "\b\e[K"
+  - delay: 208
+    content: "\aules"
+  - delay: 969
+    content: /
+  - delay: 174
+    content: nf-core/
+  - delay: 541
+    content: "\r\n\e[?2004l\r\e[0m\e[01;34mfastqc\e[0m  \e[01;34mmanta\e[0m  \e[01;34mmultiqc\e[0m\r\n\e[?2004h(nf-core) \e[01;32mjaamarks@ip-172-0-0-0\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 1930
+    content: ls modules/nf-core/
+  - delay: 728
+    content: m
+  - delay: 124
+    content: a
+  - delay: 209
+    content: nta/
+  - delay: 295
+    content: germline/
+  - delay: 556
+    content: "\r\n\e[?2004l\renvironment.yml  main.nf  meta.yml  \e[0m\e[01;34mtests\e[0m\r\n\e[?2004h(nf-core) \e[01;32mjaamarks@ip-172-0-0-0\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 4552
+    content: h
+  - delay: 36
+    content: e
+  - delay: 140
+    content: a
+  - delay: 88
+    content: d
+  - delay: 84
+    content: ' '
+  - delay: 96
+    content: '-'
+  - delay: 140
+    content: '3'
+  - delay: 145
+    content: '0'
+  - delay: 248
+    content: ' '
+  - delay: 124
+    content: m
+  - delay: 539
+    content: o
+  - delay: 153
+    content: "\adules"
+  - delay: 515
+    content: .
+  - delay: 312
+    content: j
+  - delay: 135
+    content: 'son '
+  - delay: 409
+    content: "\r\n\e[?2004l\r{\r\n    \"name\": \"nci-dceg/flowiq\",\r\n    \"homePage\": \"https://github.com/nci-dceg/flowiq\",\r\n    \"repos\": {\r\n        \"https://github.com/nf-core/modules.git\": {\r\n            \"modules\": {\r\n                \"nf-core\": {\r\n                    \"fastqc\": {\r\n                        \"branch\": \"master\",\r\n                        \"git_sha\": \"08108058ea36a63f141c25c4e75f9f872a5b2296\",\r\n                        \"installed_by\": [\r\n                            \"modules\"\r\n                        ]\r\n                    },\r\n                    \"manta/germline\": {\r\n                        \"branch\": \"master\",\r\n                        \"git_sha\": \"05954dab2ff481bcb999f24455da29a5828af08d\",\r\n                        \"installed_by\": [\r\n                            \"modules\"\r\n                        ]\r\n                    },\r\n                    \"multiqc\": {\r\n                        \"branch\": \"master\",\r\n                        \"git_sha\": \"f0719ae309075ae4a291533883847c3f7c441dad\",\r\n                        \"installed_by\": [\r\n                            \"modules\"\r\n                        ]\r\n                    }\r\n                }\r\n            },\r\n\e[?2004h(nf-core) \e[01;32mjaamarks@ip-172-0-0-0\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 2514
+    content: "\e[?2004l\r\r\nlogout\r\n"
