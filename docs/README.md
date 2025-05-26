@@ -141,7 +141,10 @@ This will add the module to your project and update your `modules.json`
 </p>
 
 
+
 <!--
+<video width="300" height="200" src="https://github.com/user-attachments/assets/f3edf923-4df8-4345-8513-95dc07ba978c"></video>
+
 <p float="left">
   <img src="assets/demo_manta.gif" width="45%" />
   <img src="assets/demo_manta.gif" width="45%" />
