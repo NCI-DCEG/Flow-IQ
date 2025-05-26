@@ -73,22 +73,94 @@ If your goal is collaboration or publication, using this tool is highly recommen
 
 
 # 🧱 Custom Pipeline Development
-This section covers how to build a custom pipeline using an nf-core module, run it on Biowulf HPC, and adapt it for AWS HealthOmics with Flow-IQ.
+This section walks you through how to build a custom pipeline using an nf-core module, test it on the Biowulf HPC, and adapt it for AWS HealthOmics with Flow-IQ.
 
-### Example:
-If you’re using the nf-core **[Sarek](https://nf-co.re/sarek/3.5.1/)** pipeline but only need the **[Manta germline](https://nf-co.re/modules/manta_germline/)** module, we'll show you how to extract it and build a standalone workflow. Then you will learn how to make it ready to run on AWS HealthOmics.
+We'll follow a real-world example and explain each step, focusing on what needs to happen and why.
 
-## What is an nf-core?
 
-## What is an nf-core module?
+## Example Scenario
 
-## How to use an nf-core module for your custom pipeline?
+Suppose you’re working with the nf-core **[Sarek](https://nf-co.re/sarek/3.5.1/)** pipeline and then have an idea for an analysis using one step of the pipeline.
+In particular, you want to build a custom pipeline for your analysis using the **[Manta germline](https://nf-co.re/modules/manta_germline/)** module. 
 
-## How to test on Biowulf
+This guild will show you how to:
+- Extract and reuse the module
+- Build a minimal pipeline around it
+- Test it locally (e.g., on Biowulf HPC)
+- Prepare and deploy it to AWS HealthOmics using Flow-IQ
 
-## How to prepare pipeline for AWS HealthOmics
+## Step 1: Locate the Module
 
-## Deploying on AWS HealthOmics
+Let’s say you’ve seen Manta used within the Sarek pipeline and want to use the manta_germline module in a standalone workflow.
+You’re not modifying Sarek—you’re building something new, based on a reusable module.
 
-## Troubleshooting / Tips
+> Add details here
+
+## Step 2: Understand How nf-core Modules Work
+
+While it might seem like you can just run:
+```bash
+nf-core modules install manta/germline
+```
+...it's not quite that simple.
+nf-core modules are reusable building blocks–not pipelines. You need a proper Nextflow pipeline project to plug the module into.
+Without this, you'll run into errors because modules can't run on their own.
+They need a pipeline "framework" to run within else you will get an error like you see below.
+So let's move on to the next step and see what we need to do first.
+
+
+> insert image
+
+## Step 3: Create a pipeline
+
+We’ll use the nf-core tool to scaffold a new custom pipeline.
+
+You’ll be walked through an interactive prompt to fill in:
+- Basic info (name, description)
+- Default template features (we’ll use the defaults)
+- Location for the new pipeline
+- Optional GitHub repo (you can skip this for now and add one later)
+
+Once the pipeline is created:
+- Open the new project directory
+- Review the `modules.json` file (this tracks your installed modules)
+
+> insert images
+
+
+## Step 4: Install the Manta Module
+
+Inside your new pipeline folder, run:
+```
+nf-core modules install manta/germline
+```
+This will add the module to your project and update your `modules.json`
+
+## Step 5: Build a One-Step Workflow
+
+Open the `main.nf` file in your pipeline.
+This is the main entry point for your Nextflow script.
+- Start with the basic structure from the template
+- Add a simple process that uses the manta_germline module
+- Modify any input/output paths and parameters to fit your test case
+
+Now you’ve got a minimal pipeline that runs the module in isolation.
+
+## Step 6: Test on Biowulf HPC
+
+Run your new pipeline on Biowulf to ensure it works in your local environment.
+This helps catch basic runtime issues before migrating to the cloud.
+
+## Step 7: Prepare for AWS HealthOmics
+
+Now that your pipeline works locally, it’s time to prepare it for the cloud:
+- Use Flow-IQ tools to check for cloud-readiness
+- Validate using the lightweight and nf-core/tools linters
+
+## Step 8: Deploy to AWS HealthOmics
+
+With validation complete, you’re ready to deploy:
+- Upload your pipeline
+- Set your input parameters and environment
+- Launch your job on AWS HealthOmics
 
