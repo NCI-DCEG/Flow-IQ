@@ -112,14 +112,15 @@ nf-core modules install manta/germline
 nf-core modules are reusable building blocks–not pipelines. You need a proper Nextflow pipeline project to plug the module into.
 Without this, you'll run into errors because modules can't run on their own.
 They need a pipeline "framework" to run within else you will get an error like you see below.
-So let's move on to the next step and see what we need to do first.
-
 
 <p float="left">
   <img src="assets/nfcore_modules_install_error.png" />
 </p>
 
 
+So let's move on to the next step and see what we need to do first.
+
+<br>
 
 ## Step 3: Create a pipeline
 
@@ -142,7 +143,7 @@ You’ll be walked through an interactive prompt to fill in:
 
 
 <p align="left">
-   <img src="assets/demo_manta.gif", width="75%" />
+   <img src="assets/demo_nfcore_pipeline_create.gif", width="75%" />
 </p>
 
 <br>
