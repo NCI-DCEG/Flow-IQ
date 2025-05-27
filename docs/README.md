@@ -135,7 +135,14 @@ Once the pipeline is created:
 - Open the new project directory
 - Review the `modules.json` file (this tracks your installed modules)
 
+
+<p float="left">
+  <img src="assets/nfcore_command.png" height="350" />
+  <img src="assets/nfcore_pipelines_command.png" height="350" />
+</p>
+
 > insert images
+
 
 
 ## Step 4: Install the Manta Module
@@ -159,6 +166,13 @@ This will add the module to your project and update your `modules.json`
   <img src="assets/demo_manta.gif" width="45%" />
   <img src="assets/demo_manta.gif" width="45%" />
 </p>
+
+<table>
+  <tr>
+    <td><img src="assets/nfcore_command.png" width="45%"/></td>
+    <td><img src="assets/nfcore_pipelines_command.png" width="45%"/></td>
+  </tr>
+</table>
 -->
 
 ## Step 5: Build a One-Step Workflow
