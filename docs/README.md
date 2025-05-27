@@ -115,7 +115,11 @@ They need a pipeline "framework" to run within else you will get an error like y
 So let's move on to the next step and see what we need to do first.
 
 
-> insert image
+<p float="left">
+  <img src="assets/nfcore_modules_install_error.png" />
+</p>
+
+
 
 ## Step 3: Create a pipeline
 
