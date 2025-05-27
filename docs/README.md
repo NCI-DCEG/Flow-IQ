@@ -125,25 +125,34 @@ So let's move on to the next step and see what we need to do first.
 
 We’ll use the nf-core tool to scaffold a new custom pipeline.
 
-You’ll be walked through an interactive prompt to fill in:
-- Basic info (name, description)
-- Default template features (we’ll use the defaults)
-- Location for the new pipeline
-- Optional GitHub repo (you can skip this for now and add one later)
-
-Once the pipeline is created:
-- Open the new project directory
-- Review the `modules.json` file (this tracks your installed modules)
-
 
 <p float="left">
   <img src="assets/nfcore_command.png" height="350" />
   <img src="assets/nfcore_pipelines_command.png" height="350" />
 </p>
 
-> insert images
+<br>
+
+You’ll be walked through an interactive prompt to fill in:
+- Basic info (name, description)
+- Default template features (we’ll use the defaults)
+- Location for the new pipeline
+- Optional GitHub repo (you can skip this for now and add one later)
 
 
+
+<p align="left">
+   <img src="assets/demo_manta.gif", width="75%" />
+</p>
+
+<br>
+
+
+Once the pipeline is created:
+- Open the new project directory
+- Review the `modules.json` file (this tracks your installed modules)
+
+> add images here
 
 ## Step 4: Install the Manta Module
 
