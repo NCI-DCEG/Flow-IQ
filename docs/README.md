@@ -83,7 +83,7 @@ We'll follow a real-world example and explain each step, focusing on what needs 
 Suppose you’re working with the nf-core **[Sarek](https://nf-co.re/sarek/3.5.1/)** pipeline and then have an idea for an analysis using one step of the pipeline.
 In particular, you want to build a custom pipeline for your analysis using the **[Manta germline](https://nf-co.re/modules/manta_germline/)** module. 
 
-This guild will show you how to:
+This guide will show you how to:
 - Extract and reuse the module
 - Build a minimal pipeline around it
 - Test it locally (e.g., on Biowulf HPC)
@@ -149,24 +149,29 @@ You’ll be walked through an interactive prompt to fill in:
 <br>
 
 
-Once the pipeline is created:
-- Open the new project directory
-- Review the `modules.json` file (this tracks your installed modules)
-
-> add images here
-
 ## Step 4: Install the Manta Module
 
 Inside your new pipeline folder, run:
 ```
 nf-core modules install manta/germline
 ```
-This will add the module to your project and update your `modules.json`
+
+This will add the module to your project and update your `modules.json`.
 
 <p align="left">
    <img src="assets/demo_manta.gif", width="75%" />
 </p>
 
+
+ > 💡 **Notice at the end of the GIF:** it shows how to include the module in your workflow using the following line:
+
+```
+INCLUDE { MANTA_GERMLINE } from ../modules/nf-core/manta/germline/main
+```
+
+Now let's build a simple pipeline using this Manta module.
+
+<br>
 
 
 <!--
@@ -185,6 +190,8 @@ This will add the module to your project and update your `modules.json`
 </table>
 -->
 
+
+
 ## Step 5: Build a One-Step Workflow
 
 Open the `main.nf` file in your pipeline.
@@ -200,11 +207,16 @@ Now you’ve got a minimal pipeline that runs the module in isolation.
 Run your new pipeline on Biowulf to ensure it works in your local environment.
 This helps catch basic runtime issues before migrating to the cloud.
 
+
+<br>
+
 ## Step 7: Prepare for AWS HealthOmics
 
 Now that your pipeline works locally, it’s time to prepare it for the cloud:
 - Use Flow-IQ tools to check for cloud-readiness
 - Validate using the lightweight and nf-core/tools linters
+
+<br>
 
 ## Step 8: Deploy to AWS HealthOmics
 
@@ -213,3 +225,23 @@ With validation complete, you’re ready to deploy:
 - Set your input parameters and environment
 - Launch your job on AWS HealthOmics
 
+
+<br><br><br><br>
+
+# ⚙️ Troubleshooting & Tips
+## Seqera AI: Bioinformatics Agent for Nextflow
+Seqera is the company behind Nextflow.
+They have built an Bioinformatics AI agent trained specifically for Nextflow.
+You can use this to accelerate your workflow building and reduce the time you spend troubleshooting so you can spend less time on the undifferentiated work and more time crafting your bioinformatics pipeline.
+
+Here are the steps to using it:
+1. Visit [**Ask-AI**](https://seqera.io/ask-ai/chat) by Seqera.
+2. Sign in using your GitHub or Google account.
+
+   > 💡 You can also try the [**Nextflow VS Code Extension**](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow) for inline AI support while coding.
+3. Type a question or paste a prompt into the input bar to get help instantly.
+
+
+<p float="left">
+  <img src="assets/demo_seqera_ai.gif" width="75%" />
+</p>
