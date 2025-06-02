@@ -96,8 +96,8 @@ You’re not modifying Sarek—you’re building something new, based on a reusa
 
 
 <p float="left">
-  <img src="assets/nfcore_sarek.png" width="45%" />
-  <img src="assets/nfcore_manta_germline.png" width="45%" />
+  <img src="assets/nfcore-sarek.png" width="45%" />
+  <img src="assets/nfcore-manta-germline.png" width="45%" />
 </p>
 
 
@@ -114,7 +114,7 @@ Without this, you'll run into errors because modules can't run on their own.
 They need a pipeline "framework" to run within else you will get an error like you see below.
 
 <p float="left">
-  <img src="assets/nfcore_modules_install_error.png" />
+  <img src="assets/nfcore-modules-install-error.png" />
 </p>
 
 
@@ -128,8 +128,8 @@ We’ll use the nf-core tool to scaffold a new custom pipeline.
 
 
 <p float="left">
-  <img src="assets/nfcore_command.png" height="350" />
-  <img src="assets/nfcore_pipelines_command.png" height="350" />
+  <img src="assets/nfcore-command.png" height="350" />
+  <img src="assets/nfcore-pipelines-command.png" height="350" />
 </p>
 
 <br>
@@ -143,7 +143,7 @@ You’ll be walked through an interactive prompt to fill in:
 
 
 <p align="left">
-   <img src="assets/demo_nfcore_pipeline_create.gif", width="75%" />
+   <img src="assets/demo-nfcore-pipeline-create.gif", width="75%" />
 </p>
 
 <br>
@@ -159,7 +159,7 @@ nf-core modules install manta/germline
 This will add the module to your project and update your `modules.json`.
 
 <p align="left">
-   <img src="assets/demo_manta.gif", width="75%" />
+   <img src="assets/demo-manta.gif", width="75%" />
 </p>
 
 
@@ -243,5 +243,5 @@ Here are the steps to using it:
 
 
 <p float="left">
-  <img src="assets/demo_seqera_ai.gif" width="75%" />
+  <img src="assets/demo-seqera-ai.gif" width="75%" />
 </p>
