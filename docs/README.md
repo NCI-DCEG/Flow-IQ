@@ -263,16 +263,16 @@ Which we can see that it's also supported by the Flow-IQ toolkit:
 </p>
 
 
+
+
 <!-- 
 Add instructions for including this in the `main.nf` script and also what to put in the `nextflow.config`
 -->
 
 
-
-<br><br>
 <br><br>
 
-### Learning about the Manta Module
+### Understanding requirements for `Manta`
 
 To understand how to run the Manta module, navigate to the nf-core module page:<br>
 🔗 https://nf-co.re/modules/manta_germline/
@@ -291,8 +291,129 @@ Everything defined on the module webpage is backed by the module's `meta.yml` fi
 > 💡 Tip: At the bottom of each nf-core module page, there are links to additional, in-depth documentation for that module.
 
 
+So now let's take a look back at the inputs/outputs required by `Manta` and see what we need to modify in the `main.nf` and also in the `nextflow.config` file.
+From the webpage for `Manta`
+🔗  https://nf-co.re/modules/manta_germline/
+
+we can see that there 4 blocks of inputs required and some are grouped under named variables like meta, meta2, and meta3. which are used to bundle related values together.
+
+So let's look at each input block.
+1. BAM/CRAM/SAM files + their indexes
+* These are the aligned sequencing reads (e.g., BAM or CRAM files) that Manta will analyze.
+* Each input alignment file (like .bam) must have a corresponding index file (.bai for BAM, .crai for CRAM).
+* For joint calling, you can pass in multiple files.
+
+2. Target regions (optional, used for exomes or targeted panels)
+* A BED file tells Manta to limit variant calling to specific genomic regions (like exons).
+* The .bed.tbi is its index, which allows quick access.
+
+3. Reference genome: FASTA file + index
+* `meta2` groups this reference input.
+* The FASTA file is the reference genome. And remember that the generated `main.nf` had a section for this which we will use.
+* `meta3` groups the FASTA index file (.fai).
+
+4. Optional config file
+* Allows you to override or extend Manta settings with a custom config file
 
 
+### ❓ What Do I Need to Run Manta?
+
+To successfully run the Manta module, you’ll need the following input files:
+
+#### ✅ **Required**
+
+* One `.bam` or `.cram` file per sample **with** its corresponding `.bai` or `.crai` index.
+* A reference genome in `.fa` format **along with** its `.fa.fai` index.
+
+#### 🟡 **Optional**
+
+* A BED file (`.bed.gz`) for targeted calling, plus its `.tbi` index.
+* A custom Manta configuration file.
+
+---
+
+### 📁 Where Do I Get Example Input Files?
+
+The best place to start is by looking at the file:
+
+```
+modules/nf-core/manta/germline/tests/main.nf.test
+```
+
+Each `nf-core` module includes this file, which defines how to test the module using small example datasets from the `nf-core/test-datasets` repository:
+
+🔗 [https://github.com/nf-core/test-datasets](https://github.com/nf-core/test-datasets)
+
+You can also find a detailed guide for using this data here:
+
+🔗 [https://github.com/nf-core/test-datasets/blob/master/docs/USE\_EXISTING\_DATA.md](https://github.com/nf-core/test-datasets/blob/master/docs/USE_EXISTING_DATA.md)
+
+---
+
+### 🧪 About the Test Datasets
+
+The `test-datasets` repository includes a special `modules` branch:
+
+> This branch of the `nf-core/test-datasets` repository contains all data used for the individual module tests.
+
+That’s what we’ll use to test our Manta module.
+
+---
+
+### 🔍 What Does `main.nf.test` Expect?
+
+If you open `main.nf.test`, you'll notice it references inputs like this:
+
+```nextflow
+file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/cram/test.paired_end.sorted.cram', checkIfExists: true)
+```
+
+This means we need to define the base path `params.modules_testdata_base_path` in a configuration file.
+
+---
+
+### ⚙️ Setting Up `modules_testdata_base_path`
+
+Rather than editing the main `nextflow.config`, it's cleaner to add this to the testing profile.
+
+In `nextflow.config`, you’ll find a profile named `test`:
+
+```nextflow
+test {
+  includeConfig 'conf/test.config'
+}
+```
+
+Edit the `conf/test.config` file and add the following:
+
+```nextflow
+// Input data
+// nf-core: Specify the paths to your test data from the test-datasets repo
+modules_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/'
+```
+
+This uses the GitHub raw URL so Nextflow can directly access the files.
+
+---
+
+### ✅ Running the Module Test
+
+Once your config is set, you can run the test using the `nf-test` tool (a simple framework for testing Nextflow pipelines and modules):
+
+```bash
+nf-core modules test manta/germline --profile conda,test
+```
+
+---
+
+<p float="left">
+  <img src="assets/demo-nf-test-manta-module.gif" width="45%" />
+</p>
+
+
+Ok, so now we have seen how we can test our `Manta` module using some nf-core test data.
+Now we have learned about what the required inputs and where some example test datasets are and how to use the Nextflow configuration files.
+So let's now use this knowledge we have learned to help us create our own pipeline by modifing our `main.nf` script.
 
 <!--
   Now you’ve got a minimal pipeline that runs the module in isolation.

@@ -1,0 +1,313 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /shared/jaamarks/nf-core/nci-dceg-flowiq
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 145
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 36
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Terminalizer
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 0
+    content: "\r\e"
+  - delay: 640
+    content: "\e[?2004h(base) \e[01;32mjaamarks@node\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 180
+    content: c
+  - delay: 72
+    content: o
+  - delay: 65
+    content: 'n'
+  - delay: 60
+    content: d
+  - delay: 55
+    content: a
+  - delay: 70
+    content: ' '
+  - delay: 65
+    content: a
+  - delay: 68
+    content: c
+  - delay: 80
+    content: t
+  - delay: 68
+    content: i
+  - delay: 77
+    content: v
+  - delay: 70
+    content: a
+  - delay: 75
+    content: t
+  - delay: 50
+    content: e
+  - delay: 110
+    content: ' '
+  - delay: 72
+    content: 'n'
+  - delay: 75
+    content: f
+  - delay: 64
+    content: '-'
+  - delay: 59
+    content: c
+  - delay: 65
+    content: o
+  - delay: 72
+    content: r
+  - delay: 80
+    content: e
+  - delay: 100
+    content: "\r\n\e[?2004l\r"
+  - delay: 95
+    content: "\e[?2004h(nf-core) \e[01;32mjaamarks@node\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 440
+    content: 'n'
+  - delay: 70
+    content: f
+  - delay: 60
+    content: '-'
+  - delay: 66
+    content: t
+  - delay: 70
+    content: e
+  - delay: 65
+    content: s
+  - delay: 60
+    content: t
+  - delay: 85
+    content: ' '
+  - delay: 66
+    content: t
+  - delay: 63
+    content: e
+  - delay: 74
+    content: s
+  - delay: 65
+    content: t
+  - delay: 98
+    content: ' '
+  - delay: 65
+    content: m
+  - delay: 58
+    content: o
+  - delay: 57
+    content: d
+  - delay: 52
+    content: u
+  - delay: 58
+    content: l
+  - delay: 65
+    content: e
+  - delay: 70
+    content: s
+  - delay: 78
+    content: /
+  - delay: 84
+    content: 'n'
+  - delay: 75
+    content: f
+  - delay: 60
+    content: '-'
+  - delay: 62
+    content: c
+  - delay: 70
+    content: o
+  - delay: 78
+    content: r
+  - delay: 67
+    content: e
+  - delay: 84
+    content: /
+  - delay: 73
+    content: m
+  - delay: 66
+    content: a
+  - delay: 84
+    content: 'n'
+  - delay: 70
+    content: t
+  - delay: 66
+    content: a
+  - delay: 80
+    content: /
+  - delay: 62
+    content: g
+  - delay: 68
+    content: e
+  - delay: 67
+    content: r
+  - delay: 69
+    content: m
+  - delay: 66
+    content: l
+  - delay: 64
+    content: i
+  - delay: 63
+    content: n
+  - delay: 68
+    content: e
+  - delay: 92
+    content: ' '
+  - delay: 90
+    content: '-'
+  - delay: 48
+    content: '-'
+  - delay: 55
+    content: p
+  - delay: 62
+    content: r
+  - delay: 74
+    content: o
+  - delay: 60
+    content: f
+  - delay: 58
+    content: i
+  - delay: 54
+    content: l
+  - delay: 92
+    content: e
+  - delay: 78
+    content: ' '
+  - delay: 65
+    content: c
+  - delay: 70
+    content: o
+  - delay: 75
+    content: n
+  - delay: 70
+    content: d
+  - delay: 64
+    content: a
+  - delay: 55
+    content: ','
+  - delay: 185
+    content: t
+  - delay: 66
+    content: e
+  - delay: 58
+    content: s
+  - delay: 61
+    content: t
+  - delay: 66
+    content: "\r\n\e[?2004l\r"
+  - delay: 474
+    content: "\r\n\U0001F680\e[1m nf-test 0.9.2\e[0m\r\nhttps://www.nf-test.com\r\n(c) 2021 - 2024 Lukas Forer and Sebastian Schoenherr\r\n\r\n\e[33mWarning: This pipeline has no nf-test config file.\e[0m\r\n"
+  - delay: 604
+    content: "\r\n\e[1mTest Process MANTA_GERMLINE\e[0m\r\n\r\n"
+  - delay: 109
+    content: "  \e[1mTest\e[0m [e2064ce5] 'human - cram' "
+  - delay: 1353
+    content: "\e[32mPASSED\e[0m (63.749s)\r\n  \e[1mTest\e[0m [fcba04a6] 'human - cram - bed' "
+  - delay: 1295
+    content: "\e[32mPASSED\e[0m (65.295s)\r\n  \e[1mTest\e[0m [a4a31c45] 'human - cram - bed - jointcalling' "
+  - delay: 1335
+    content: "\e[32mPASSED\e[0m (65.834s)\r\n  \e[1mTest\e[0m [21d6c58f] 'human - cram - stub' "
+  - delay: 1228
+    content: "\e[32mPASSED\e[0m (65.028s)\r\n\r\n\r\n\e[1m\e[32mSUCCESS: \e[0m\e[0mExecuted 4 tests in 259.921s\r\n\r\n"
+  - delay: 1133
+    content: "\e[?2004h(nf-core) \e[01;32mjaamarks@node\e[00m:\e[01;34m/shared/jaamarks/nf-core/nci-dceg-flowiq\e[00m$ "
+  - delay: 2354
+    content: "\e[?2004l\r\r\nlogout\r\n"
