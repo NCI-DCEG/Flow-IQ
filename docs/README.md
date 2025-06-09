@@ -685,18 +685,22 @@ You can even verify that everything is working as expected by adding a simple li
 
 This will show you the contents of the channel, confirming the data flow.
 
+**Note:** we have include the `main.nf` and `workflows/flowiq.nf` scripts in this repo for your reference.
+In fact, we have included the whole repo here.
 
 
+<br><br>
+<br><br>
+<br><br>
+<br><br>
 
-<br><br>
-<br><br>
-<br><br>
-<br><br>
 
 ## Step 6: Test on Biowulf HPC
 
 Run your new pipeline on Biowulf to ensure it works in your local environment.
 This helps catch basic runtime issues before migrating to the cloud.
+
+
 
 
 <br>
