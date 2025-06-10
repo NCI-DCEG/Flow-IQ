@@ -677,16 +677,23 @@ workflow FLOWIQ {
 }
 ```
 
-We get the names of these output variables directly from the `manta/germline/main.nf` script's `output:` block (e.g., `emit: candidate_small_indels_vcf`). We then simply assign them to new variables within our `FLOWIQ` workflow's `emit` block.
+We obtain the names of the output variables directly from the `output:` block of the `manta/germline/main.nf` script (e.g., `emit: candidate_small_indels_vcf`). These are then assigned to new variables within the `emit` block of our `FLOWIQ` workflow.
 
-You can even verify that everything is working as expected by adding a simple line of code within the workflow to print out an output, like:
+To verify that everything is working as expected, you can include a simple line in your workflow to print the contents of an output channel:
 
-`candidate_small_indels_vcf.view()`
+```groovy
+candidate_small_indels_vcf.view()
+```
 
-This will show you the contents of the channel, confirming the data flow.
+You can also inspect the **Directed Acyclic Graph (DAG)** generated in the output directory specified by `params.outdir` in `nextflow.config`. It provides a visual overview of the data flow between processes. For example:
 
-**Note:** we have include the `main.nf` and `workflows/flowiq.nf` scripts in this repo for your reference.
-In fact, we have included the whole repo here.
+<p float="left">
+  <img src="assets/pipeline_dag_2025-06-09_19-38-20.png" width="55%"> 
+</p>
+
+This helps confirm the structure and behavior of your pipeline by showing how data moves through each channel.
+
+**Note:** The `main.nf` and `workflows/flowiq.nf` scripts are included in this repository for your reference — in fact, we included the entire pipeline repository in `nci-dceg-flowiq`.
 
 
 <br><br>
