@@ -1,21 +1,21 @@
 # Flow-IQ
 
+<!--
 <div style="margin-bottom:2rem;">
   <img src="images/flow-iq.png" style="max-width:200px; float:right; margin-left:1rem;"/>
-  <h3 class="subtitle">A workflow cloud migration toolkit</h3>
 </div>
+-->
 
 
-This project aims to develop a toolkit that assists NIH researchers in migrating their bioinformatics workflows from the Biowulf HPC cluster to the AWS cloud, enhancing efficiency and cost-effectiveness through standardized Nextflow modules and templates.
+An interactive tool that maps Biowulf software modules and example datasets to their corresponding cloud-compatible Docker images and AWS S3 locations, helping users transition bioinformatics workflows from HPC to the cloud.
 
-For more information about this resource, please see the GitHub readme at [NCI-DCEG/Flow-IQ](https://github.com/NCI-DCEG/Flow-IQ).
+<br><br>
 
 ---
 
 
 <body>
     <div class="container mainbody">
-
         <h2 class="flow-h2"><a name="docker-image-builder">Biowulf Module to Docker Image Builder</a></h2>
         <p>Use the dropdown boxes below to locate the equivalent docker image for each Biowulf module.</p>
         <form>
@@ -26,7 +26,7 @@ For more information about this resource, please see the GitHub readme at [NCI-D
                         <option value="">[ select ] </option>
                     </select>
                 </div>
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-4">
                     <label for="version">Version</label>
                     <select class="form-control" id="version" disabled>
                         <option value="">Please select a version</option>
@@ -60,7 +60,7 @@ For more information about this resource, please see the GitHub readme at [NCI-D
                         <option value="">[ select ] </option>
                     </select>
                 </div>
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-6">
                     <label for="data_options">Additional Options</label>
                     <select class="form-control" id="data_options" disabled>
                         <option value="">Please select any additional options </option>

@@ -2,7 +2,7 @@ site_name: Flow-IQ Docs
 nav:
   - Home: index.md
   - Getting Started: 
-    #- getting-started/about-flowiq.md
+    - getting-started/about-flowiq.md
     - getting-started/what-you-should-know.md
   - User Guide:
     - user-guide/index.md
@@ -16,12 +16,12 @@ nav:
     - user-guide/step8-deploy-to-aws-healthomics.md
   - Troubleshooting & Tips: 
     - user-guide/troubleshooting-and-tips.md
-  - Tool-Kit: 
-    - toolkit/index.md
+  - Explorer: 
+    - explorer/index.md
 
 extra_css:
   - https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css
-  - toolkit/stylesheets/extra.css
+  - explorer/stylesheets/extra.css
 
 extra_javascript:
   - https://code.jquery.com/jquery-3.6.0.min.js
