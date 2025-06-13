@@ -49,6 +49,10 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">About Flow-IQ</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-its-organized">How It's Organized</a>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../what-you-should-know/">Before You Start: What You Should Know</a>
@@ -110,13 +114,16 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="about-flow-iq">About Flow-IQ</h1>
-<p><strong>Flow-IQ is a toolkit designed to help NIH researchers</strong> migrate Nextflow bioinformatics workflows from the Biowulf HPC cluster to the cloud.</p>
-<p>Key features include:</p>
+<p><strong>Flow-IQ</strong> is a toolkit designed to help researchers transition bioinformatics workflows from traditional HPC environments like Biowulf to the AWS cloud.</p>
+<h3 id="key-features">Key Features</h3>
 <ul>
-<li>A <a href="../../explorer/">interactive toolkit</a> to find Docker images matching Biowulf environment modules, plus curated links to cloud-accessible datasets (e.g., mapping Biowulf iGenomes data to AWS Open Data).</li>
-<li>Guides and demos showing how to use custom and <code>nf-core/tools</code> linters to ensure pipelines are cloud-ready.</li>
-<li>Instructions for building custom pipelines from nf-core modules that run on both HPC and AWS.</li>
+<li>An <a href="../../explorer/">interactive toolkit</a> for mapping Biowulf environment modules to matching Docker images, along with curated links to cloud-accessible datasets (e.g., AWS Open Data equivalents of Biowulf iGenomes).</li>
+<li>Guides and demos on using <code>nf-core/tools</code> and custom linters to verify that pipelines are cloud-ready.</li>
+<li>Step-by-step instructions for building custom pipelines from nf-core modules that run on both HPC and AWS environments.</li>
 </ul>
+<p><br></p>
+<h2 id="how-its-organized">How It's Organized</h2>
+<p>The <a href="../../user-guide/">User Guide</a> walks you through each step of building a custom Nextflow pipeline using nf-core modules. You'll learn how to assemble your pipeline, make it portable, and prepare it for cloud deployment using linters and the <a href="../../explorer/">Flow-IQ Explorer</a> to locate compatible data and containers.</p>
 <p><br></p>
 <hr />
 <p>This resource was developed by <a href="https://dceg.cancer.gov/about/organization/tdrp/wong-wendy">Wendy Wong</a>, a bioinformatician
