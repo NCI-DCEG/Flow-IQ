@@ -1,0 +1,127 @@
+<style type="text/css">
+    .mainbody {
+        padding: 50px 15px;
+    }
+    .section-heading {
+        margin-top: 40px;
+    }
+    .flow-h2 {
+        font-size: 1.6rem;
+        color: blue;
+    }
+
+    .subtitle {
+        font-weight: 200;
+    }
+
+    pre {
+        background-color: #ededed;
+        border-radius: 5px;
+        padding: 20px;
+    }
+    .desc {
+        /* Set a max-width for the pre element to wrap text */
+        white-space: pre-wrap; /* Allow wrapping */
+        word-wrap: break-word; /* Break long words if necessary */
+        /*background-color: #e6f2ff; */
+    }
+    code {
+        color: inherit;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    button,
+    .local_code {
+        cursor: pointer;
+    }
+
+    hr {
+        margin: 30px 0;
+    }
+
+    .prewrap {
+        position: relative;
+        display: -webkit-inline-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        vertical-align: middle;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .prewrap>pre {
+        position: relative;
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        margin: 0;
+
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        width: 100%;
+        /*background-color: #e6f2ff;*/
+    }
+
+    .prewrap>.btn {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    #description {
+        white-space: pre-wrap; /* This preserves line breaks and spaces but allows wrapping */
+        word-wrap: break-word; /* Older property, but good for broader compatibility */
+        overflow-wrap: break-word; /* Modern equivalent of word-wrap */
+    }
+
+
+    #manifest_heading a {
+        color: #666;
+    }
+
+    .footer {
+        background-color: #ededed;
+        color: #999;
+        padding: 20px 0;
+        font-size: 0.8em;
+    }
+
+    .footer a {
+        color: #999;
+        text-decoration: underline;
+    }
+
+    .footer img {
+        height: 60px;
+    }
+
+    .footer .sll-logo {
+        margin-top: 20px;
+    }
+    .float-lg-right {
+    margin-top: -60px; /* Adjust this value as needed */
+    }
+
+    @media only screen and (max-width: 500px) {
+        .mainbody {
+            padding-top: 10px;
+        }
+
+        h1.display-1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+        }
+        
+
+        pre {
+            padding: 10px;
+        }
+    }
+</style>
