@@ -1,0 +1,12 @@
+site_name: Flow-IQ Docs
+nav:
+  - Home: index.md
+  - Getting Started: 
+    - getting-started/about-flowiq.md
+    - getting-started/what-you-should-know.md
+  - User Guide:
+    - user-guide/index.md
+    - user-guide/step1-locate-module.md
+    - user-guide/step2-understanding-nfcore-modules.md
+    
+theme: readthedocs
