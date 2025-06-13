@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Step 5: Build a One-Step Workflow - Flow-IQ Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../../explorer/stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Step 5: Build a One-Step Workflow";
+        var mkdocs_page_input_path = "user-guide/step5-build-a-one-step-workflow.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Flow-IQ Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/about-flowiq/">About Flow-IQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/what-you-should-know/">Before You Start: What You Should Know</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Custom Pipeline Development</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step1-locate-module/">Step 1: Locate the Module</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step2-understanding-nfcore-modules/">Step 2: Understand How nf-core Modules Work</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step3-create-pipeline/">Step 3: Create a pipeline</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step4-install-manta-module/">Step 4: Install the Manta Module</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Step 5: Build a One-Step Workflow</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#understanding-mainnf">Understanding main.nf</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#understanding-nextflowconfig">Understanding nextflow.config</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#understanding-mantas-requirements">Understanding Manta's Requirements</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-do-i-need-to-run-manta">❓ What Do I Need to Run Manta?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#required">✅ Required</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#optional">🟡 Optional</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#where-to-find-example-input-files">Where to Find Example Input Files</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#about-the-test-datasets">About the Test Datasets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-mainnftest-expects">What main.nf.test Expects</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setting-up-manta_input_data_base_path">️Setting Up manta_input_data_base_path</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running-the-module-test">Running the Module Test</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integrating-manta-into-mainnf">Integrating Manta into main.nf</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#defining-input-data-paths">Defining Input Data Paths</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-input-channels-in-mainnf">Creating Input Channels in main.nf</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#calling-the-manta-module">Calling the Manta Module</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running-your-pipeline">Running Your Pipeline</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#finishing-touches-organizing-your-pipeline">Finishing Touches: Organizing Your Pipeline</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connecting-modules-emitting-outputs">Connecting Modules: Emitting Outputs</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step6-test-on-biowulf/">Step 6: Test on Biowulf HPC</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step7-prepare-for-aws-healthomics/">Step 7: Prepare for AWS HealthOmics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step8-deploy-to-aws-healthomics/">Step 8: Deploy to AWS HealthOmics</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Troubleshooting & Tips</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../troubleshooting-and-tips/">Seqera AI: Bioinformatics Agent for Nextflow</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explorer</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explorer/">Flow-IQ</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Flow-IQ Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">User Guide</li>
+      <li class="breadcrumb-item active">Step 5: Build a One-Step Workflow</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="step-5-build-a-one-step-workflow">Step 5: Build a One-Step Workflow</h1>
+<p>When you first enter your newly created pipeline directory, you'll see a few files and directories generated by <code>nf-core</code>:</p>
+<p float="left"\>
+  <img src="../assets/nci-dceg-ls-output.png" width="100%">
+</p>
+
+<p>For now, we'll focus on <code>main.nf</code>, which is the core Nextflow script where we'll integrate the <code>Manta</code> module into our custom pipeline.</p>
+<hr />
+<h2 id="understanding-mainnf">Understanding <code>main.nf</code></h2>
+<p>The first few lines of <code>main.nf</code> outline the pipeline's basic structure:</p>
+<pre><code class="language-groovy">/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    nci-dceg/flowiq
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Github : https://github.com/nci-dceg/flowiq
+----------------------------------------------------------------------------------------
+*/
+
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    IMPORT FUNCTIONS / MODULES / SUBWORKFLOWS / WORKFLOWS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+include { FLOWIQ          } from './workflows/flowiq'
+include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_flowiq_pipeline'
+include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_flowiq_pipeline'
+include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_flowiq_pipeline'
+</code></pre>
+<p>Locate the section labeled <code>IMPORT FUNCTIONS / MODULES / SUBWORKFLOWS / WORKFLOWS</code>. This is where you'll add the <code>include</code> statement for the <code>Manta</code> module you installed in Step 4. Add it directly below the existing <code>include</code> lines. This statement allows your pipeline to reference the module, which lives in the <code>modules/</code> directory at the root of your project.</p>
+<hr />
+<h2 id="understanding-nextflowconfig">Understanding <code>nextflow.config</code></h2>
+<p>Now, let's look at the configuration file at the root of your pipeline: <code>nextflow.config</code>. This file is key for:</p>
+<ul>
+<li>Setting pipeline-wide parameters.</li>
+<li>Defining default values used throughout the workflow.</li>
+<li>Referencing additional config files (like <code>conf/igenomes.config</code>).</li>
+</ul>
+<p>For example, you might see this line in the <code>params</code> block:</p>
+<p><code>igenomes_base = 's3://ngi-igenomes/igenome'</code></p>
+<p>This line specifies the base path for AWS-hosted reference genome files. But how does your pipeline use it?</p>
+<p>In <code>main.nf</code>, you might find a line like:</p>
+<p><code>params.fasta = getGenomeAttribute('fasta')</code></p>
+<p>This line leverages the <code>getGenomeAttribute</code> function, which was automatically included earlier. It dynamically builds the path to the correct reference file based on the genome build you've selected. For instance, if <code>params.genome = 'GRCh37'</code>, the FASTA file path would resolve to:</p>
+<p><code>s3://ngi-igenomes/igenomes/Homo_sapiens/Ensembl/GRCh37/Sequence/WholeGenomeFasta/genome.fa</code></p>
+<p>You can verify this logic by checking the contents of <code>conf/igenomes.config</code>, which supports various <code>igenomes</code> references:</p>
+<p float="left">
+  <img src="../assets/flowiq-sync-command-builder.png" width="100%">
+</p>
+
+<hr />
+<h2 id="understanding-mantas-requirements">Understanding Manta's Requirements</h2>
+<p>To effectively use the <code>Manta</code> module, it's crucial to understand its expected inputs and outputs. The best place to find this information is the <code>nf-core</code> module page:</p>
+<p>🔗 <a href="https://nf-co.re/modules/manta_germline/">https://nf-co.re/modules/manta_germline/</a></p>
+<p>On this page, you'll find:</p>
+<ul>
+<li>A module description.</li>
+<li>Detailed input/output channel definitions.</li>
+<li>Parameter requirements.</li>
+<li>A link to the module's source code on GitHub.</li>
+</ul>
+<p>The corresponding GitHub repository is:</p>
+<p>🔗 <a href="https://github.com/nf-core/modules/tree/master/modules/nf-core/manta/germline">https://github.com/nf-core/modules/tree/master/modules/nf-core/manta/germline</a></p>
+<blockquote>
+<p>💡 <strong>Tip:</strong> Each <code>nf-core</code> module page also includes links to more in-depth documentation at the bottom.</p>
+</blockquote>
+<p>All the information on the module's webpage is backed by its <code>meta.yml</code> file, located at <code>modules/nf-core/manta/germline/meta.yml</code>.</p>
+<p>Let's dive into the input requirements for <code>Manta</code> as outlined on its webpage. You'll notice it specifies <strong>four distinct input blocks</strong>, some grouped under <code>meta</code>, <code>meta2</code>, and <code>meta3</code> variables, which bundle related values.</p>
+<p>Here's a breakdown of each input block:</p>
+<ol>
+<li>
+<p><strong>BAM/CRAM/SAM files + their indexes:</strong></p>
+<ul>
+<li>These are the aligned sequencing reads (<code>.bam</code> or <code>.cram</code> files) that <code>Manta</code> will analyze.</li>
+<li>Each input alignment file (e.g., <code>.bam</code>) <strong>must</strong> have a corresponding index file (<code>.bai</code> for BAM, <code>.crai</code> for CRAM).</li>
+<li>For joint calling (analyzing multiple samples together), you can pass in multiple files.</li>
+</ul>
+</li>
+<li>
+<p><strong>Target regions (optional, for exome or targeted panels):</strong></p>
+<ul>
+<li>A BED file, often compressed (<code>.bed.gz</code>), instructs <code>Manta</code> to limit variant calling to specific genomic regions (like exons).</li>
+<li>It requires an accompanying <code>.tbi</code> index file for quick access.</li>
+</ul>
+</li>
+<li>
+<p><strong>Reference genome: FASTA file + index:</strong></p>
+<ul>
+<li>The <code>fasta</code> file (grouped with <code>meta2</code>) is the reference genome. Your generated <code>main.nf</code> already has a section for managing this.</li>
+<li>The <code>fai</code> file (grouped with <code>meta3</code>) is its corresponding FASTA index.</li>
+</ul>
+</li>
+<li>
+<p><strong>Optional config file:</strong></p>
+<ul>
+<li>This allows you to customize <code>Manta</code>'s settings by providing your own configuration file.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="what-do-i-need-to-run-manta">❓ What Do I Need to Run Manta?</h2>
+<p>To successfully run the <code>Manta</code> module, you'll need the following input files:</p>
+<h3 id="required">✅ <strong>Required</strong></h3>
+<ul>
+<li>One <code>.bam</code> or <code>.cram</code> file per sample, <strong>paired with</strong> its <code>.bai</code> or <code>.crai</code> index.</li>
+<li>A reference genome in <code>.fa</code> format, <strong>along with</strong> its <code>.fa.fai</code> index.</li>
+</ul>
+<h3 id="optional">🟡 <strong>Optional</strong></h3>
+<ul>
+<li>A BED file (<code>.bed.gz</code>) for targeted calling, plus its <code>.tbi</code> index.</li>
+<li>A custom <code>Manta</code> configuration file.</li>
+</ul>
+<hr />
+<h2 id="where-to-find-example-input-files">Where to Find Example Input Files</h2>
+<p>The best place to start is by examining the <code>nf-core</code> module test file:<br>
+<code>modules/nf-core/manta/germline/tests/main.nf.test</code></p>
+<p>Every <code>nf-core</code> module includes a <code>main.nf.test</code> file. This file defines how to test the module using small example datasets, typically sourced from the <code>nf-core/test-datasets</code> repository:</p>
+<p>🔗 <a href="https://github.com/nf-core/test-datasets">https://github.com/nf-core/test-datasets</a></p>
+<p>You can also find a detailed guide on using this data here:</p>
+<p>🔗 <a href="https://github.com/nf-core/test-datasets/blob/master/docs/USE_EXISTING_DATA.md">https://github.com/nf-core/test-datasets/blob/master/docs/USE_EXISTING_DATA.md</a></p>
+<hr />
+<h2 id="about-the-test-datasets">About the Test Datasets</h2>
+<p>The <code>test-datasets</code> repository has a special <code>modules</code> branch specifically for individual module tests:</p>
+<blockquote>
+<p>This branch of the <code>nf-core/test-datasets</code> repository contains all data used for the individual module tests.</p>
+</blockquote>
+<p>We'll use this branch to test our <code>Manta</code> module.</p>
+<hr />
+<h2 id="what-mainnftest-expects">What <code>main.nf.test</code> Expects</h2>
+<p>If you open <code>main.nf.test</code>, you'll notice it references inputs like this:</p>
+<pre><code class="language-groovy">file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/cram/test.paired_end.sorted.cram', checkIfExists: true)
+</code></pre>
+<p>This indicates we need to define the base path <code>params.modules_testdata_base_path</code> in a configuration file.</p>
+<hr />
+<h2 id="setting-up-manta_input_data_base_path">️Setting Up <code>manta_input_data_base_path</code></h2>
+<p>Instead of modifying the main <code>nextflow.config</code>, it's generally cleaner to add this to a specific profile, such as the testing profile.</p>
+<p>In <code>nextflow.config</code>, you'll find a <code>test</code> profile:</p>
+<pre><code class="language-groovy">test {
+  includeConfig 'conf/test.config'
+}
+</code></pre>
+<p>Edit the <code>conf/test.config</code> file and add the following:</p>
+<pre><code class="language-groovy">// Input data
+// nf-core: Specify the paths to your test data from the test-datasets repo
+modules_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/'
+</code></pre>
+<p>This approach leverages the GitHub raw URL, allowing Nextflow to directly access the files.</p>
+<hr />
+<h2 id="running-the-module-test">Running the Module Test</h2>
+<p>Once your configuration is set, you can run the test using the <code>nf-test</code> tool (a framework for testing Nextflow pipelines and modules):</p>
+<pre><code class="language-bash">nf-core modules test manta/germline -profile conda,test
+</code></pre>
+<p float="left">
+  <img src="../assets/demo-nf-test-manta-module.gif" width="100%">
+</p>
+
+<p>Now that we've seen how to test the <code>Manta</code> module using <code>nf-core</code> test data, we understand its required inputs, where to find example datasets, and how to configure them using Nextflow.</p>
+<p>Let's apply that knowledge by modifying our <code>main.nf</code> script to build our own pipeline.</p>
+<hr />
+<h2 id="integrating-manta-into-mainnf">Integrating Manta into <code>main.nf</code></h2>
+<p>From examining and running the <code>main.nf.test</code> script for <code>Manta</code>, we can see that for the simplest test case (<code>test("human - cram")</code>), there are four main input blocks. We'll model our <code>main.nf</code> after these.</p>
+<p>First, let's look at the sample input block from the test:</p>
+<pre><code class="language-groovy">input[0] = [ [ id:'test'], // meta map
+file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/cram/test.paired_end.sorted.cram', checkIfExists: true),
+
+file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/cram/test.paired_end.sorted.cram.crai', checkIfExists: true),
+
+[],[]
+]
+</code></pre>
+<p>This represents a single sample CRAM file and its index, with no BED or BED index specified.</p>
+<p>Next, we have the reference FASTA input sections:</p>
+<pre><code class="language-groovy">// fasta
+input[1] = [ [id:'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)]
+
+// fai
+input[2] = [ [id:'genome'],file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.fai', checkIfExists: true)]
+</code></pre>
+<p>Followed by the config input:</p>
+<pre><code class="language-groovy">// config
+input[3] = Channel.of(&quot;[manta]&quot;, &quot;enableRemoteReadRetrievalForInsertionsInGermlineCallingModes = 0&quot;)
+           .collectFile(name:&quot;manta_options.ini&quot;, newLine:true)
+</code></pre>
+<p>We'll discuss how to best organize the workflow later, but for now, let's reuse these inputs in our pipeline and add them to the <code>main.nf</code> script at the root of your repository.</p>
+<hr />
+<h2 id="defining-input-data-paths">Defining Input Data Paths</h2>
+<p>The first section you'll notice in <code>main.nf</code> after the import statements is <code>GENOME PARAMETER VALUES</code>. Here, <code>nf-core</code> has pre-populated the line <code>params.fasta = getGenomeAttribute('fasta')</code>. The <code>Manta</code> module's second input block is for the FASTA and its corresponding index file.</p>
+<p>While this <code>getGenomeAttribute</code> function is excellent for production runs with whole genome FASTA files from <code>igenomes</code> (see the dropdown below for details), for this tutorial, we'll stick with the simple example file used in the <code>Manta</code> test cases.</p>
+<details>
+ <summary>Using Whole Genome FASTA File</summary>
+
+The `getGenomeAttribute` function (`def getGenomeAttribute(attribute)`) is designed to fetch genome-specific attributes. As you can see from its definition (which you can find using `git grep getGenomeAttribute`):
+
+
+<pre><code class="language-groovy">def getGenomeAttribute(attribute)
+{
+    if (params.genomes &amp;&amp; params.genome &amp;&amp; params.genomes.containsKey(params.genome))
+    {
+        if (params.genomes[ params.genome ].containsKey(attribute))
+        {
+            return params.genomes[ params.genome ][
+              attribute ]
+        }
+    }
+    return null
+}
+</code></pre>
+
+
+This function expects two parameters, `genomes` and `genome`, to be defined. In your `nextflow.config`, you'll already find a section for references:
+
+
+<pre><code class="language-yaml">    // References
+    genome                   = null
+    igenomes_base            = 's3://ngi-igenomes/igenomes/'
+</code></pre>
+
+
+This allows you to use `igenomes` references on AWS S3. To understand what to set for `genome`, you can consult `config/igenomes.config`, which lists various reference paths. For this example pipeline, we'll match the `Manta` test cases exactly.
+
+</details>
+
+<p>When we ran our <code>Manta</code> module test, we added the following to <code>conf/test.config</code>:</p>
+<pre><code class="language-groovy">// Input data
+// TODO nf-core: Specify the paths to your test data on nf-core/test-datasets
+modules_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/'
+</code></pre>
+<p>Let's adapt this parameter for our main configuration file, <code>nextflow.config</code>, by renaming it and adding it to the <code>params</code> scope. Paste the following:</p>
+<pre><code class="language-groovy">    // Input options
+    manta_input_data_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/'
+</code></pre>
+<hr />
+<h2 id="creating-input-channels-in-mainnf">Creating Input Channels in <code>main.nf</code></h2>
+<p>Now, let's update our <code>main.nf</code> script by adding our inputs as <strong>channels</strong>. Nextflow is built on a dataflow programming model, where processes communicate through channels, which are fundamental for moving data through your pipeline. You can learn more about them here:</p>
+<p>🔗 <a href="https://www.nextflow.io/docs/latest/channel.html">https://www.nextflow.io/docs/latest/channel.html</a></p>
+<p>Add the following <code>CHANNEL DEFINITIONS</code> section to your <code>main.nf</code> script:</p>
+<pre><code class="language-groovy">/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    CHANNEL DEFINITIONS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+// Channel for the first input: tuple val(meta), path(input), path(index), path(target_bed), path(target_bed_tbi)
+Channel.from([
+    tuple(
+        [ id: 'test' ],                                                              // meta
+        file(params.manta_input_data_base_path + 'genomics/homo_sapiens/illumina/cram/test.paired_end.sorted.cram', checkIfExists: true), // input (CRAM)
+        file(params.manta_input_data_base_path + 'genomics/homo_sapiens/illumina/cram/test.paired_end.sorted.cram.crai', checkIfExists: true), // index (CRAI)
+        [],                                                                          // target_bed (empty list, as no BED is used for this basic test)
+        []                                                                           // target_bed_tbi (empty list)
+    )
+]).set { manta_main_input_ch } // This channel matches the first input signature
+
+// Channel for the second input: tuple val(meta2), path(fasta)
+Channel.from([
+    tuple(
+        [ id: 'genome' ],                                                          // meta2
+        file(params.manta_input_data_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true) // fasta
+    )
+]).set { manta_fasta_ch }
+
+// Channel for the third input: tuple val(meta3), path(fai)
+Channel.from([
+    tuple(
+        [ id: 'genome' ],                                                          // meta3
+        file(params.manta_input_data_base_path + 'genomics/homo_sapiens/genome/genome.fasta.fai', checkIfExists: true) // fai
+    )
+]).set { manta_fai_ch }
+
+// Channel for the fourth input: path(config)
+Channel
+    .of(&quot;[manta]&quot;, &quot;enableRemoteReadRetrievalForInsertionsInGermlineCallingModes = 0&quot;)
+    .collectFile(name: &quot;manta_options.ini&quot;, newLine: true)
+    .set { manta_config_ch }
+</code></pre>
+<p>Essentially, we're taking the input syntax from the <code>tests/main.nf.test</code> script and wrapping these inputs in Nextflow channels.</p>
+<hr />
+<h2 id="calling-the-manta-module">Calling the Manta Module</h2>
+<p>With the input channels defined, we can now call our module within the main workflow:</p>
+<pre><code class="language-groovy">/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    NAMED WORKFLOWS FOR PIPELINE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+workflow NCIDCEG_FLOWIQ {
+
+    main:
+
+    // Call MANTA_GERMLINE, feeding the channels in the correct order
+    // as defined in the module's 'input:' block
+    MANTA_GERMLINE(
+        manta_main_input_ch, // Corresponds to `tuple val(meta), path(input), path(index), path(target_bed), path(target_bed_tbi)`
+        manta_fasta_ch,      // Corresponds to `tuple val(meta2), path(fasta)`
+        manta_fai_ch,        // Corresponds to `tuple val(meta3), path(fai)`
+        manta_config_ch      // Corresponds to `path(config)`
+    )
+}
+
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    RUN MAIN WORKFLOW
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+workflow {
+
+    main:
+
+    NCIDCEG_FLOWIQ()
+}
+
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    THE END
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+</code></pre>
+<hr />
+<h2 id="running-your-pipeline">Running Your Pipeline</h2>
+<p>Now that your <code>main.nf</code> is updated, you can test the pipeline:</p>
+<pre><code class="language-bash">nextflow run main.nf -profile conda
+</code></pre>
+<p float="left">
+  <img src="../assets/nextflow-run-main-profile-conda.png" width="100%">
+</p>
+
+<p>You've now created a minimal pipeline that successfully runs the <code>Manta</code> module!</p>
+<hr />
+<h2 id="finishing-touches-organizing-your-pipeline">Finishing Touches: Organizing Your Pipeline</h2>
+<p>Now that we have a working pipeline, let's take a moment to clean things up and follow <code>nf-core</code> best practices.</p>
+<p>Open your <code>main.nf</code> script. Near the top, you'll see a section like this:</p>
+<pre><code class="language-groovy">/********************************************************************************************************
+    IMPORT FUNCTIONS / MODULES / SUBWORKFLOWS / WORKFLOWS
+********************************************************************************************************/
+include { FLOWIQ } from './workflows/flowiq'
+</code></pre>
+<p>This line tells us that the pipeline is importing a workflow definition from the <code>flowiq</code> script located in the <code>workflows/</code> directory.</p>
+<p>👉 The <code>nf-core</code> convention is to keep the root <code>main.nf</code> minimal and delegate all workflow logic to these included scripts. This significantly improves readability, scalability, and maintainability as your pipeline grows.</p>
+<p>Since we've added the <code>Manta</code> module to our pipeline, we should also relocate its <code>include</code> statement:</p>
+<pre><code class="language-groovy">include { MANTA_GERMLINE } from '../modules/nf-core/manta/germline'
+</code></pre>
+<p>This import should live in <code>workflows/flowiq.nf</code> instead of <code>main.nf</code>, because that's where the logic using it will reside.</p>
+<p>In short: <strong>keep <code>main.nf</code> tidy and focused</strong> on high-level orchestration, and let <code>flowiq.nf</code> handle the details of your workflow.</p>
+<p>Once you've done that, your pipeline will not only run correctly but also follow a clean, modular design that's easier to share and maintain.</p>
+<hr />
+<h2 id="connecting-modules-emitting-outputs">Connecting Modules: Emitting Outputs</h2>
+<p>Finally, let's look at how to connect modules in a multi-step pipeline where you need to use the output from one module as input to another.</p>
+<p>The <code>MANTA_GERMLINE</code> module produces several outputs, as defined in its <code>main.nf</code> script. To make these outputs available to other processes or for further use in your workflow, you need to <code>emit</code> them from your workflow.</p>
+<p>Here's how you can do that within your <code>FLOWIQ</code> workflow:</p>
+<pre><code class="language-groovy">workflow FLOWIQ {
+
+    main:
+
+    MANTA_GERMLINE(
+      manta_main_input_ch, // Corresponds to `tuple val(meta), path(input), path(index), path(target_bed), path(target_bed_tbi)`
+      manta_fasta_ch,      // Corresponds to `tuple val(meta2), path(fasta)`
+      manta_fai_ch,        // Corresponds to `tuple val(meta3), path(fai)`
+      manta_config_ch      // Corresponds to `path(config)`
+    )
+
+    emit:
+    candidate_small_indels_vcf     = MANTA_GERMLINE.out.candidate_small_indels_vcf
+    candidate_small_indels_vcf_tbi = MANTA_GERMLINE.out.candidate_small_indels_vcf_tbi
+    candidate_sv_vcf               = MANTA_GERMLINE.out.candidate_sv_vcf
+    candidate_sv_vcf_tbi           = MANTA_GERMLINE.out.candidate_sv_vcf_tbi
+    diploid_sv_vcf                 = MANTA_GERMLINE.out.diploid_sv_vcf
+    diploid_sv_vcf_tbi             = MANTA_GERMLINE.out.diploid_sv_vcf_tbi
+    versions                       = MANTA_GERMLINE.out.versions
+}
+</code></pre>
+<p>We obtain the names of the output variables directly from the <code>output:</code> block of the <code>manta/germline/main.nf</code> script (e.g., <code>emit: candidate_small_indels_vcf</code>). These are then assigned to new variables within the <code>emit</code> block of our <code>FLOWIQ</code> workflow.</p>
+<p>To verify that everything is working as expected, you can include a simple line in your workflow to print the contents of an output channel:</p>
+<pre><code class="language-groovy">candidate_small_indels_vcf.view()
+</code></pre>
+<p>You can also inspect the <strong>Directed Acyclic Graph (DAG)</strong> generated in the output directory specified by <code>params.outdir</code> in <code>nextflow.config</code>. It provides a visual overview of the data flow between processes. For example:</p>
+<p float="left">
+  <img src="../assets/pipeline_dag_manta_20250609.png" width="100%"> 
+</p>
+
+<p>This helps confirm the structure and behavior of your pipeline by showing how data moves through each channel.</p>
+<p><strong>Note:</strong> The <code>main.nf</code> and <code>workflows/flowiq.nf</code> scripts are included in this repository for your reference — in fact, we included the entire pipeline repository in <code>nci-dceg-flowiq</code>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../step4-install-manta-module/" class="btn btn-neutral float-left" title="Step 4: Install the Manta Module"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../step6-test-on-biowulf/" class="btn btn-neutral float-right" title="Step 6: Test on Biowulf HPC">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../step4-install-manta-module/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../step6-test-on-biowulf/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

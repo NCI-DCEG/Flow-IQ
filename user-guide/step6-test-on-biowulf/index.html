@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Step 6: Test on Biowulf HPC - Flow-IQ Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../../explorer/stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Step 6: Test on Biowulf HPC";
+        var mkdocs_page_input_path = "user-guide/step6-test-on-biowulf.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Flow-IQ Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/about-flowiq/">About Flow-IQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/what-you-should-know/">Before You Start: What You Should Know</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Custom Pipeline Development</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step1-locate-module/">Step 1: Locate the Module</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step2-understanding-nfcore-modules/">Step 2: Understand How nf-core Modules Work</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step3-create-pipeline/">Step 3: Create a pipeline</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step4-install-manta-module/">Step 4: Install the Manta Module</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step5-build-a-one-step-workflow/">Step 5: Build a One-Step Workflow</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Step 6: Test on Biowulf HPC</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-happens-when-executor-slurm-is-set">✅ What happens when executor = 'slurm' is set?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-happens-if-executor-is-not-set">❌ What happens if executor is not set?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-and-where-are-resources-set">How and where are resources set?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#biowulf-support-in-nf-coreconfigs">Biowulf Support in nf-core/configs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#naming-conflicts-when-adding-your-own-profiles">⚠️ Naming Conflicts When Adding Your Own Profiles</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step7-prepare-for-aws-healthomics/">Step 7: Prepare for AWS HealthOmics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../step8-deploy-to-aws-healthomics/">Step 8: Deploy to AWS HealthOmics</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Troubleshooting & Tips</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../troubleshooting-and-tips/">Seqera AI: Bioinformatics Agent for Nextflow</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explorer</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explorer/">Flow-IQ</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Flow-IQ Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">User Guide</li>
+      <li class="breadcrumb-item active">Step 6: Test on Biowulf HPC</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="step-6-test-on-biowulf-hpc">Step 6: Test on Biowulf HPC</h1>
+<p>When running on Biowulf HPC, we need to configure settings specific to that environment—most importantly, specifying which <strong>executor</strong> to use.</p>
+<p>This is typically done using <strong>profiles</strong> in the <code>nextflow.config</code> file. A profile allows you to bundle environment-specific settings like the executor type, memory and CPU allocations, and other resource or cluster-specific configurations. You can activate a profile using the <code>-profile</code> option when launching a pipeline.</p>
+<p>On Biowulf, the key setting is:</p>
+<pre><code class="language-groovy">executor = 'slurm'
+</code></pre>
+<p>Let’s break down why this matters.</p>
+<hr />
+<h2 id="what-happens-when-executor-slurm-is-set">✅ What happens when <code>executor = 'slurm'</code> is set?</h2>
+<p>When you specify <code>executor = 'slurm'</code>, Nextflow:</p>
+<ul>
+<li>Submits jobs using <code>sbatch</code></li>
+<li>Translates process directives (<code>cpus</code>, <code>memory</code>, <code>time</code>) into <code>#SBATCH</code> options</li>
+<li>Automatically manages cluster queue behavior (submission rate, polling interval, retries, etc.)</li>
+<li>Ensures each process runs on a compute node, not the local machine</li>
+</ul>
+<p>This setup is essential for proper resource allocation and performance on clusters like Biowulf.</p>
+<hr />
+<h2 id="what-happens-if-executor-is-not-set">❌ What happens if <code>executor</code> is <em>not</em> set?</h2>
+<p>If you don’t specify an executor, Nextflow defaults to:</p>
+<pre><code class="language-groovy">executor = 'local'
+</code></pre>
+<p>Which means:</p>
+<ul>
+<li>All processes run on the same machine where <code>nextflow run</code> is executed</li>
+<li>No jobs are submitted to Slurm</li>
+<li>Resource directives like <code>--mem</code>, <code>--cpus</code>, and <code>--time</code> are not interpreted as SLURM constraints</li>
+<li>You’re simply multithreading on a single node—either in an interactive session or within an <code>sbatch</code>-wrapped shell</li>
+</ul>
+<p>This is <strong>not</strong> what you want on an HPC cluster like Biowulf.</p>
+<hr />
+<h2 id="how-and-where-are-resources-set">How and where are resources set?</h2>
+<p>Just like the executor, resources like CPU, memory, and time are set through configuration files and Nextflow process labels.</p>
+<p>For example, in <code>manta/germline/main.nf</code>:</p>
+<pre><code class="language-groovy">process MANTA_GERMLINE {
+    tag &quot;$meta.id&quot;
+    label 'process_medium'
+    label 'error_retry'
+}
+</code></pre>
+<p>The label <code>process_medium</code> refers to this block in <code>conf/base.config</code>:</p>
+<pre><code class="language-groovy">withLabel:process_medium {
+    cpus   = { 6     * task.attempt }
+    memory = { 36.GB * task.attempt }
+    time   = { 8.h   * task.attempt }
+}
+</code></pre>
+<p>This setup dynamically scales resources with retry attempts.</p>
+<hr />
+<h2 id="biowulf-support-in-nf-coreconfigs">Biowulf Support in nf-core/configs</h2>
+<p>Biowulf is one of the many clusters pre-configured in the <a href="https://github.com/nf-core/configs">nf-core/configs</a> repository. This means you don’t have to define Biowulf-specific settings yourself.</p>
+<p>You can simply run:</p>
+<pre><code class="language-bash">nextflow run main.nf -c nextflow.config -profile biowulf
+</code></pre>
+<p>Nextflow will automatically pull the Biowulf configuration from:</p>
+<p>🔗 <a href="https://github.com/nf-core/configs/blob/master/conf/biowulf.config">https://github.com/nf-core/configs/blob/master/conf/biowulf.config</a></p>
+<p>This profile sets <code>executor = 'slurm'</code>, defines staging behavior, handles file caching, and more—ready to use out of the box.</p>
+<p>For more info, see:</p>
+<p>🔗 <a href="https://hpc.nih.gov/apps/nextflow.html">Biowulf-specific Nextflow docs at NIH</a></p>
+<p>🔗 <a href="https://nf-co.re/configs">nf-core/configs homepage</a></p>
+<hr />
+<h2 id="naming-conflicts-when-adding-your-own-profiles">⚠️ Naming Conflicts When Adding Your Own Profiles</h2>
+<p>If you define your own <code>biowulf</code> profile in your local <code>nextflow.config</code>, it may <strong>conflict</strong> with the official one from <code>nf-core/configs</code>. That’s because Nextflow prioritizes remote profiles when you use <code>-profile</code>.</p>
+<p>To avoid this, use a different name for custom configs:</p>
+<pre><code class="language-groovy">profiles {
+  biowulf_custom {
+    process.executor = 'slurm'
+    // your overrides here
+  }
+}
+</code></pre>
+<p>Then launch with:</p>
+<pre><code class="language-bash">nextflow run main.nf -c nextflow.config -profile biowulf_custom
+</code></pre>
+<h2 id="how-to-execute">How to Execute</h2>
+<p>Create a batch input file (e.g. <code>run_manta_on_biowulf.sh</code>) to run the master Nextflow process.
+For example:</p>
+<pre><code class="language-bash">#! /bin/bash
+#SBATCH --job-name=nextflow-main
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=4G
+#SBATCH --gres=lscratch:200
+#SBATCH --time=24:00:00
+
+module load nextflow
+export NXF_SINGULARITY_CACHEDIR=/data/$USER/nxf_singularity_cache;
+export SINGULARITY_CACHEDIR=/data/$USER/.singularity;
+export TMPDIR=/lscratch/$SLURM_JOB_ID
+export NXF_JVM_ARGS=&quot;-Xms2g -Xmx4g&quot;
+
+nextflow run main.nf -c nextflow.config -profile conda,biowulf
+</code></pre>
+<p>Submit the job using <code>sbatch</code>:</p>
+<pre><code>sbatch nf_main.sh
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Find more details specific to using Nextflow on Biowulf HPC, see the official documentation at: https://hpc.nih.gov/apps/nextflow.html</p>
+</blockquote>
+<p><br></p>
+<p>A template submission script, <code>run_manta_on_biowulf.sh</code>, is also included in the <code>nci-dceg-flowiq</code> directory of this repo for your reference.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../step5-build-a-one-step-workflow/" class="btn btn-neutral float-left" title="Step 5: Build a One-Step Workflow"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../step7-prepare-for-aws-healthomics/" class="btn btn-neutral float-right" title="Step 7: Prepare for AWS HealthOmics">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../step5-build-a-one-step-workflow/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../step7-prepare-for-aws-healthomics/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
