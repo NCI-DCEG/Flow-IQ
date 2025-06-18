@@ -14,8 +14,9 @@ nav:
     - user-guide/step6-test-on-biowulf.md
     - user-guide/step7-prepare-for-aws-healthomics.md
     - user-guide/step8-deploy-to-aws-healthomics.md
+
   - Troubleshooting & Tips: 
-    - user-guide/troubleshooting-and-tips.md
+    - troubleshooting/troubleshooting-and-tips.md
   - Explorer: 
     - explorer/index.md
 
