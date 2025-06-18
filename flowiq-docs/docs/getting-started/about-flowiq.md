@@ -12,7 +12,7 @@
 
 <br>
 
-## How It's Organized
+### How It's Organized
 
 The [User Guide](../user-guide/index.md) walks you through each step of building a custom Nextflow pipeline using nf-core modules. You'll learn how to assemble your pipeline, make it portable, and prepare it for cloud deployment using linters and the [Flow-IQ Explorer](../explorer/index.md) to locate compatible data and containers.
 
@@ -22,4 +22,3 @@ The [User Guide](../user-guide/index.md) walks you through each step of building
 
 This resource was developed by <a href="https://dceg.cancer.gov/about/organization/tdrp/wong-wendy">Wendy Wong</a>, a bioinformatician
 at the <a href="https://dceg.cancer.gov/">National Cancer Institute - Division of Cancer Epidemiology & Genetics</a>, and Jesse Marks, a bioinformatics software engineer at <a href="https://rti.org">RTI International - GenOmics and Translational Research Center.</a>
-
