@@ -180,3 +180,32 @@ After launching a run, HealthOmics provides tools to monitor job status, review 
 ## 🛠️ Automation Tip
 
 All of these steps — uploading containers, defining workflows, starting runs — can be automated using the AWS CLI or SDKs. This is useful for CI/CD or scaling to many analyses.
+
+For example, you can [create a workflow](https://docs.aws.amazon.com/cli/latest/reference/omics/create-workflow.html) using the AWS CLI with:
+
+```bash
+aws omics create-workflow \
+    --name flowiq-manta \
+    --engine Nextflow \
+    --definition-zip fileb://nci-dceg-flowiq.zip \
+    --parameter-template file://nf-params.json
+```
+
+<br>
+
+You can also [start a run](https://docs.aws.amazon.com/cli/latest/reference/omics/start-run.html) for an existing workflow:
+
+```bash
+aws omics start-run \
+    --workflow-id 7569906 \
+    --role-arn arn:aws:iam::123456789012:role/omics-service-role-serviceRole-W8O1XMPL7QZ \
+    --name 'cram-to-bam' \
+    --output-uri s3://omics-artifacts-01d6xmpl4e72dd32/workflow-output/ \
+    --run-group-id 1234567 \
+    --priority 1 \
+    --storage-capacity 10 \
+    --log-level ALL \
+    --parameters file://nf-params.json
+```
+
+These commands allow for seamless integration of HealthOmics workflows into automated data pipelines and reproducible cloud workflows.
