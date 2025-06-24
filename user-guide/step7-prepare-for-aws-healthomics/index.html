@@ -70,6 +70,16 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Step 7: Prepare for AWS HealthOmics</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#flow-iq-explorer">Flow-IQ Explorer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#validate-with-linters">Validate with Linters</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#linter-rules-for-nextflow">linter-rules-for-nextflow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nf-core-pipelines-lint">nf-core pipelines lint</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../step8-deploy-to-aws-healthomics/">Step 8: Deploy to AWS HealthOmics</a>
@@ -110,9 +120,73 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="step-7-prepare-for-aws-healthomics">Step 7: Prepare for AWS HealthOmics</h1>
-<p>Now that your pipeline works locally, it’s time to prepare it for the cloud:
-- Use Flow-IQ tools to check for cloud-readiness
-- Validate using the lightweight and nf-core/tools linters</p>
+<p><br></p>
+<h2 id="flow-iq-explorer">Flow-IQ Explorer</h2>
+<p><a href="../../explorer/">Flow-IQ</a> is an interactive toolkit designed to help users transition from the Biowulf HPC environment to the cloud. It maps Biowulf environment modules to equivalent Docker images and includes curated links to cloud-accessible datasets (e.g., AWS Open Data equivalents of Biowulf iGenomes).</p>
+<p>Here’s a short clip demonstrating how it works:</p>
+<p float="left">
+  <img src="../assets/flowiq-explorer-demo.gif" width="100%" />
+  <!--<img src="assets/flowiq-explorer-demo.gif" width="100%" />-->
+</p>
+
+<p><br> <br></p>
+<h2 id="validate-with-linters">Validate with Linters</h2>
+<p>To ensure that your Nextflow pipeline is cloud-ready and compatible with AWS HealthOmics, we use two linters:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What It Checks</th>
+<th>Why Use It</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>linter-rules-for-nextflow</code></td>
+<td>Basic Nextflow syntax and AWS HealthOmics-specific requirements</td>
+<td>Fast, lightweight checks for syntax and compatibility</td>
+</tr>
+<tr>
+<td><code>nf-core/tools</code></td>
+<td>Conformance with nf-core guidelines and community best practices</td>
+<td>Thorough checks to ensure reproducibility and shareability</td>
+</tr>
+</tbody>
+</table>
+<p>You can run both tools to validate your pipeline against key technical and community standards.</p>
+<hr />
+<h3 id="linter-rules-for-nextflow"><code>linter-rules-for-nextflow</code></h3>
+<p>AWS originally developed an open-source tool called <a href="https://github.com/awslabs/linter-rules-for-nextflow/tree/main">linter-rules-for-nextflow</a> to catch issues in Nextflow pipelines before runtime.
+We’ve created a customized fork of this tool, added some rules tailored for NIH researchers transitioning from Biowulf to AWS HealthOmics, and developed a script so that the Docker version of this tool can be used in the Biowulf HPC environment.</p>
+<p>To make it usable in HPC environments that support Apptainer (but not Docker), we provide a helper script:
+<strong><code>docker_to_apptainer_nextflow_linter.sh</code></strong>
+This script converts the <a href="https://hub.docker.com/r/jaamarks/linter-rules-for-nextflow">Docker image</a> into an Apptainer-compatible format and runs the linter seamlessly in environments like Biowulf.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Validates general Nextflow syntax</li>
+<li>Checks for AWS HealthOmics-specific requirements</li>
+<li>Verifies configuration files</li>
+<li>Provides clear violation messages with suggestions</li>
+<li>Runs without Docker via Apptainer</li>
+<li>Easy-to-follow tutorial and documentation available in the <a href="https://github.com/NCI-DCEG/Flow-IQ/tree/main/scripts"><code>Flow-IQ/scripts</code></a> folder</li>
+</ul>
+<hr />
+<h3 id="nf-core-pipelines-lint"><code>nf-core pipelines lint</code></h3>
+<p>The <code>nf-core</code> project defines best-practice standards for building and sharing Nextflow pipelines.
+The developed <code>nf-core/tools</code> Python package includes which includes a Nextflow linter which checks for syntax errors as well as comparing the pipeline structure against nf-core community guidelines.</p>
+<p><strong>Why use it:</strong></p>
+<ul>
+<li>Enforces nf-core standards for reproducibility</li>
+<li>Helps prepare pipelines for broader sharing or publication</li>
+<li>Easy to install and run</li>
+</ul>
+<p><strong>Resources:</strong></p>
+<ul>
+<li>Usage documentation: <a href="https://nf-co.re/docs/nf-core-tools/pipelines/lint">nf-core tools lint</a></li>
+<li>Full guidelines list: <a href="https://nf-co.re/docs/guidelines/pipelines/overview">nf-core pipeline guidelines</a></li>
+</ul>
+<hr />
+<p>Using these tools prepares your pipeline for the next step: <strong><a href="../step8-deploy-to-aws-healthomics/">Deploy to AWS HealthOmics</a>!</strong> 🚀</p>
               
             </div>
           </div><footer>

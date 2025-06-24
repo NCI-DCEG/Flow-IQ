@@ -72,19 +72,19 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Step 8: Deploy to AWS HealthOmics</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#container-requirements">Container Requirements</a>
+    <li class="toctree-l2"><a class="reference internal" href="#container-requirements">📦 Container Requirements</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#step-1-upload-the-container-to-private-ecr">Step 1: Upload the Container to Private ECR</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#step-2-prepare-workflow-definition-and-parameters">Step 2: Prepare Workflow Definition and Parameters</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-3-create-a-workflow">Step 3: Create a Workflow</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-3-create-the-workflow">Step 3: Create the Workflow</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#step-4-start-a-run">Step 4: Start a Run</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#automation-note">🛠️ Automation Note</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#job-monitoring">📊 Job Monitoring</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#automation-tip">🛠️ Automation Tip</a>
     </li>
     </ul>
                   </li>
@@ -124,129 +124,140 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="step-8-deploy-to-aws-healthomics">Step 8: Deploy to AWS HealthOmics</h1>
-<p>This step walks through how to deploy a workflow to <a href="https://aws.amazon.com/healthomics/">AWS HealthOmics</a>.</p>
-<p>Start by visiting the HealthOmics landing page:</p>
+<p>This step walks you through how to deploy a workflow to <a href="https://aws.amazon.com/healthomics/">AWS HealthOmics</a>, focusing on setting up your containers, uploading your workflow and parameters, and running it in the cloud.</p>
+<p>Start by visiting the AWS HealthOmics landing page:</p>
 <p float="left">
   <img src="../assets/health-omics-landing-page.png" width="100%" />
 </p>
 
-<p><br></p>
-<p>AWS HealthOmics provides three main services:
-- <strong>Storage</strong>
-- <strong>Workflows</strong>
-- <strong>Analytics</strong></p>
-<p>For our use case, we will focus on <strong>Workflows</strong>. Select <strong>Create workflows</strong> in the <em>Bioinformatics workflows</em> section:</p>
+<p>AWS HealthOmics provides three main services:</p>
+<ul>
+<li><strong>Storage</strong></li>
+<li><strong>Workflows</strong></li>
+<li><strong>Analytics</strong></li>
+</ul>
+<p>For our purposes, we’ll focus on <strong>Workflows</strong>. Select <strong>Create workflows</strong> under the <em>Bioinformatics workflows</em> section:</p>
 <p float="left">
   <img src="../assets/health-omics-select-bioinformatics-workflows.png" width="100%" />
 </p>
 
-<p><br></p>
-<p>On the next screen, the <strong>How it works</strong> panel outlines the four steps involved in creating and running a workflow:</p>
+<p>On the next screen, the <strong>How it works</strong> panel outlines the four major steps to create and run a workflow:</p>
 <p float="left">
   <img src="../assets/health-omics-workflows-how-it-works.png" width="100%" />
 </p>
 
 <hr />
-<h2 id="container-requirements">Container Requirements</h2>
-<p>One important consideration when using AWS HealthOmics is that <strong>all workflow containers must be uploaded to <a href="https://aws.amazon.com/ecr/">Amazon Elastic Container Registry (ECR)</a></strong> — AWS’s managed container registry (similar to Docker Hub).</p>
-<p>In our case, we’re using modules that specify containers, Singularity images, or Conda environments. Since HealthOmics uses Docker, we need to upload the Docker container manually to a private ECR repository.</p>
-<p>In our example, the container required by the module can be found in the <code>manta/germline/main.nf</code> script:</p>
-<pre><code class="language-groovy">process MANTA_GERMLINE {
-    tag &quot;$meta.id&quot;
-    label 'process_medium'
-    label 'error_retry'
-
-    conda &quot;${moduleDir}/environment.yml&quot;
-    container &quot;${ workflow.containerEngine == 'singularity' &amp;&amp; !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/manta:1.6.0--h9ee0642_1' :
-        'biocontainers/manta:1.6.0--h9ee0642_1' }&quot;
+<h2 id="container-requirements">📦 Container Requirements</h2>
+<p>A key requirement for using AWS HealthOmics is that <strong>all containers used in workflows must be stored in Amazon Elastic Container Registry (ECR)</strong> — AWS’s managed Docker image service. Public registries like <code>quay.io</code> or <code>Docker Hub</code> are not supported directly.</p>
+<p>In our case, the container required by a module is defined in <code>manta/germline/main.nf</code>:</p>
+<pre><code class="language-groovy">container &quot;${ workflow.containerEngine == 'singularity' &amp;&amp; !task.ext.singularity_pull_docker_container ?
+  'https://depot.galaxyproject.org/singularity/manta:1.6.0--h9ee0642_1' :
+  'biocontainers/manta:1.6.0--h9ee0642_1' }&quot;
 </code></pre>
-<p>This indicates that we need the <code>biocontainers/manta:1.6.0--h9ee0642_1</code> Docker image.</p>
-<p>We can confirm in <code>nextflow.config</code> that the image is pulled from <code>quay.io</code>, a widely used public registry:</p>
+<p>We also see in <code>nextflow.config</code>:</p>
 <pre><code class="language-groovy">docker.registry = 'quay.io'
 </code></pre>
-<p>Since HealthOmics cannot pull directly from <code>quay.io</code>, we need to:</p>
-<ol>
-<li>Pull the container locally from <code>quay.io</code>.</li>
-<li>Push it to a <strong>private ECR</strong> repository.</li>
-</ol>
+<p>This means we need to pull the image locally from <code>quay.io</code> and push it to a <strong>private ECR repository</strong> so HealthOmics can access it.</p>
 <hr />
-<p><br></p>
 <h2 id="step-1-upload-the-container-to-private-ecr">Step 1: Upload the Container to Private ECR</h2>
-<p>Navigate to <strong>Amazon ECR &gt; Private repositories</strong>. You should see a screen like this:</p>
+<p>Navigate to <strong>Amazon ECR &gt; Private repositories</strong> and click <strong>Create repository</strong>. For the name, use something like <code>biocontainers/manta</code>.</p>
 <p float="left">
   <img src="../assets/ecr-private-registry.png" width="100%" />
 </p>
 
-<p><br></p>
-<p>Click <strong>Create repository</strong>, and for the name, use something like <code>biocontainers/manta</code>.</p>
 <p float="left">
   <img src="../assets/ecr-create-private-repo.png" width="100%" />
 </p>
 
-<p><br></p>
-<p>Once the repository is created, enter it and click <strong>View push commands</strong> to get the Docker commands needed to upload your image:</p>
-<p float="left">
-  <img src="../assets/ecr-view-push-commands.png" width="100%" />
-</p>
-
-<p><br></p>
-<p>You'll need a shell environment with both <code>docker</code> and <code>awscli</code> installed. Here's an example of the push commands:</p>
-<pre><code class="language-bash">$ export AWS_ACCESS_KEY_ID=&quot;EXAMPLEASIATHVQLIU&quot;
-$ export AWS_SECRET_ACCESS_KEY=&quot;EXAMPLED39E9YrpO6odnxZzuFnyexzVJl2ixt&quot;
-$ export AWS_SESSION_TOKEN=&quot;EXAMPLEIQoJb3JpZ2luX2VjEKv//////////wEaCX...&quot;
-
+<p>Once created, go to the repository and click <strong>View push commands</strong>. This provides the full set of <code>docker</code> and <code>awscli</code> commands needed to push your image:</p>
+<pre><code class="language-bash"># Authenticate with ECR
 $ aws ecr get-login-password --region us-east-1 \
   | docker login --username AWS \
     --password-stdin 222634394918.dkr.ecr.us-east-1.amazonaws.com
 
+# Pull from quay.io
 $ docker pull quay.io/biocontainers/manta:1.6.0--h9ee0642_1
 
+# Tag and push to your private ECR
 $ docker tag quay.io/biocontainers/manta:1.6.0--h9ee0642_1 \
   222634394918.dkr.ecr.us-east-1.amazonaws.com/biocontainers/manta:1.6.0--h9ee0642_1
 
 $ docker push 222634394918.dkr.ecr.us-east-1.amazonaws.com/biocontainers/manta:1.6.0--h9ee0642_1
 </code></pre>
-<p><br></p>
-<p>After pushing, you should see your image in the repository:</p>
 <p float="left">
   <img src="../assets/ecr-manta-pushed.png" width="100%" />
 </p>
 
 <hr />
-<p><br></p>
 <h2 id="step-2-prepare-workflow-definition-and-parameters">Step 2: Prepare Workflow Definition and Parameters</h2>
-<p>HealthOmics expects:</p>
+<p>HealthOmics requires:</p>
 <ul>
-<li>A workflow definition (in our case, a <strong>Nextflow</strong> script)</li>
-<li>A <strong>JSON file</strong> that defines input parameters and execution settings</li>
+<li>A <strong>workflow definition</strong> (e.g., a Nextflow script)</li>
+<li>A <strong>JSON file</strong> containing the input parameters</li>
 </ul>
-<p>We already have the Nextflow pipeline defined. Now we just need to create the corresponding JSON parameter file.</p>
+<p>You already have the Nextflow pipeline; now you need to generate the corresponding parameter file.</p>
+<p>Use the <code>nf-core</code> CLI to do this:</p>
+<pre><code class="language-bash">nf-core pipelines --create-params-file
+# or
+nf-core pipelines --launch
+</code></pre>
+<p>Both methods generate a <code>nf-params.json</code> file, which you can upload directly to HealthOmics.</p>
 <hr />
+<h2 id="step-3-create-the-workflow">Step 3: Create the Workflow</h2>
+<p>Click <strong>Create workflow</strong> in the HealthOmics Workflows section:</p>
+<p float="left">
+  <img src="../assets/healthomics-create-workflow.png" width="100%" />
+</p>
+
+<p>In the setup wizard, provide:</p>
+<ul>
+<li>A workflow name and description</li>
+<li>The workflow language (e.g., Nextflow)</li>
+<li>Path to the script (local file or S3)</li>
+<li>Your parameter file (<code>nf-params.json</code>) — recommended to avoid manual errors</li>
+</ul>
+<p>You’ll also be asked to define:</p>
+<ul>
+<li>Parameter types (required, optional)</li>
+<li>Descriptions</li>
+<li>Any additional custom parameters</li>
+</ul>
+<p float="left">
+  <img src="../assets/healthomics-create-workflow2.png" width="100%" />
+</p>
+
 <p><br></p>
-<h2 id="step-3-create-a-workflow">Step 3: Create a Workflow</h2>
-<p>In this step, you’ll upload your Nextflow script and JSON file to HealthOmics to define a reusable workflow.</p>
-<p>Once created, this workflow can be used as a template for future runs.</p>
+<p>Once configured, click <strong>Create workflow</strong>. You’ll be returned to the dashboard and can now proceed to run the workflow.</p>
+<p float="left">
+  <img src="../assets/healthomics-create-workflow3.png" width="100%" />
+</p>
+
 <hr />
-<p><br></p>
+<p><br><br></p>
 <h2 id="step-4-start-a-run">Step 4: Start a Run</h2>
-<p>You're now ready to execute the workflow!</p>
-<p>Configure:</p>
-<ul>
-<li>Parameter values</li>
-<li>Run priority</li>
-<li>Output location</li>
-<li>(Optional) Run group</li>
-</ul>
-<p>Then launch the run and monitor its progress via the HealthOmics dashboard.</p>
-<hr />
-<p><br></p>
-<h2 id="automation-note">🛠️ Automation Note</h2>
-<p>All of these steps can also be executed programmatically using the AWS CLI or SDKs, which is useful for scaling or integrating into CI/CD pipelines.</p>
+<p>You’re now ready to run the workflow! Click <strong>Start run</strong> and complete the wizard.</p>
+<p float="left">
+  <img src="../assets/healthomics-run-workflow.png" width="100%" />
+</p>
+
+<p>One important detail: <strong>You must provide a Service Role</strong> during this step. This role allows HealthOmics to interact with other AWS resources like S3 buckets. If you don’t have permission to create IAM roles, you’ll need help from an AWS admin.</p>
+<p>See: <a href="https://docs.aws.amazon.com/omics/latest/dev/permissions-service.html">Service roles for AWS HealthOmics</a></p>
+<p float="left">
+  <img src="../assets/healthomics-run-workflow2.png" width="100%" />
+</p>
+
 <hr />
 <p><br></p>
 <h2 id="job-monitoring">📊 Job Monitoring</h2>
-<p>Once the workflow is running, HealthOmics provides monitoring capabilities to track job status, runtime logs, and output artifacts.</p>
+<p>After launching a run, HealthOmics provides tools to monitor job status, review logs, and inspect output artifacts directly through the dashboard.</p>
+<p float="left">
+  <img src="../assets/healthomics-run-workflow3.png" width="100%" />
+</p>
+
+<hr />
+<p><br></p>
+<h2 id="automation-tip">🛠️ Automation Tip</h2>
+<p>All of these steps — uploading containers, defining workflows, starting runs — can be automated using the AWS CLI or SDKs. This is useful for CI/CD or scaling to many analyses.</p>
               
             </div>
           </div><footer>
