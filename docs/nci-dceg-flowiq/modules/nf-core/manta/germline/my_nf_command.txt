@@ -1,4 +1,0 @@
-
-[46m N E X T F L O W [0m  ~  version 24.10.4
-
-Unknown configuration profile: 'conda'
